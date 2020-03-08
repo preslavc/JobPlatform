@@ -18,6 +18,14 @@ namespace JobPlatform.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public int? EmployerId { get; set; }
+
+        public Employer Employer { get; set; }
+
         // Audit info
         public DateTime CreatedOn { get; set; }
 

@@ -26,6 +26,16 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Employer> Employers { get; set; }
+
+        public DbSet<JobPost> JobPosts { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<JobTag> JobTags { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -47,6 +57,8 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<JobTag>().HasKey(x => new { x.JobPostId, x.TagId });
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
