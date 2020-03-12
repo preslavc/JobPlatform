@@ -1,0 +1,40 @@
+﻿@model CreateViewModel
+@{
+    this.ViewData["Title"] = "Post a job";
+}
+
+<div>
+    <form asp-controller="Job" asp-action="Create" class="form">
+
+        <div class="form-group">
+            <label asp-for="@Model.Title"></label>
+            <input asp-for="@Model.Title" class="form-control" />
+            <span asp-validation-for="@Model.Title"></span>
+        </div>
+
+        <div class="form-check-inline">
+            <div>
+                <label asp-for="@Model.Location.City"></label>
+                <input asp-for="@Model.Location.City" class="form-control" />
+                <span asp-validation-for="@Model.Location.City"></span>
+            </div>
+            <div>
+                <label asp-for="@Model.Location.Country"></label>
+                <input asp-for="@Model.Location.Country" class="form-control" />
+                <span asp-validation-for="@Model.Location.Country"></span>
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <textarea asp-for="@Model.Description" class="form-control rounded-0 "></textarea>
+            <span asp-validation-for="@Model.Description"></span>
+        </div>
+
+        <div>
+            <input type="submit" value="Публикувай" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
