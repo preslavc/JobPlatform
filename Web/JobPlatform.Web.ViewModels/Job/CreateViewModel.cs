@@ -2,8 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using JobPlatform.Data.Models;
-
     public class CreateViewModel
     {
         [Display(Name = "Позиция")]
@@ -14,7 +12,6 @@
         [Display(Name = "Описание")]
         [Required]
         public string Description { get; set; }
-
 
         [Display(Name = "Държава")]
         [Required]

@@ -1,5 +1,6 @@
 ﻿namespace JobPlatform.Web.Controllers
 {
+    using JobPlatform.Web.ViewModels.Job;
     using Microsoft.AspNetCore.Mvc;
 
     public class JobController : BaseController
@@ -9,9 +10,11 @@
             return this.View();
         }
 
-        public IActionResult Details(int jobId)
+        public IActionResult Details()
         {
-            return this.View();
+            DetailsViewModel dvm = new DetailsViewModel();
+
+            return this.View(dvm);
         }
     }
 }
