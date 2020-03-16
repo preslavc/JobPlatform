@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using JobPlatform.Common;
+using JobPlatform.Web.ViewModels.ValidationAttributes;
 
 namespace JobPlatform.Web.Areas.Identity.Pages.Account
 {
@@ -65,7 +66,7 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
 
             // TODO: EIK check
             [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
-            [StringLength(20, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 4)]
+            [EikValidation]
             [Display(Name = "ЕИК/БУЛСТАТ")]
             public string Eik { get; set; }
 
