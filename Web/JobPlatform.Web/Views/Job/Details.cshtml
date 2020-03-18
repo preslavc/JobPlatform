@@ -14,17 +14,17 @@
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">
         <img class="img-fluid" src="@Model.ImageUrl" alt="">
         <p class="form-text">
-            @Model.Employer <br>
-            @Model.City, @Model.Country <br>
-            @Model.PublishDate
+            @Model.Employer.Name <br>
+            @Model.Location.City, @Model.Location.Country <br>
+            @Model.Date
         </p>
         <hr />
         <div>
-            <h6>Умения</h6>
+            @*<h6>Умения</h6>
             @foreach (string tag in Model.Tags)
             {
                 <a class="badge badge-secondary" href="#/@tag">@tag</a>
-            }
+            }*@
         </div>
     </aside>
 </div>
