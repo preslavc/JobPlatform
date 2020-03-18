@@ -28,6 +28,8 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new TagSeeder(),
+                              new EmployerSeeder(),
+                              new JobPostSeeder(),
                           };
 
             foreach (var seeder in seeders)
