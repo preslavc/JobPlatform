@@ -1,12 +1,12 @@
-﻿using JobPlatform.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JobPlatform.Data.Seeding
+﻿namespace JobPlatform.Data.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using JobPlatform.Data.Models;
+
     public class JobPostSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

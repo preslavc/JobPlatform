@@ -48,11 +48,6 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
-            [StringLength(50, ErrorMessage = "Потребителското име трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 4)]
-            [Display(Name = "Потребителско име")]
-            public string UserName { get; set; }
-
-            [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
             [EmailAddress(ErrorMessage = GlobalConstants.ErrorMessageEmailField)]
             [Display(Name = "Имейл адрес")]
             public string Email { get; set; }
@@ -82,7 +77,7 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

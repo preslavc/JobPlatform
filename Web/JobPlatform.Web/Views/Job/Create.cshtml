@@ -3,35 +3,34 @@
     this.ViewData["Title"] = "Post a job";
 }
 
-    <div>
-        <form asp-controller="Job" asp-action="Create" class="form">
-            <div class="form-group">
-                <label asp-for="@Model.Title"></label>
-                <input asp-for="@Model.Title" class="form-control" />
-                <span asp-validation-for="@Model.Title"></span>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label asp-for="@Model.City"></label>
-                    <input asp-for="@Model.City" class="form-control" />
-                    <span asp-validation-for="@Model.City"></span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label asp-for="@Model.Country"></label>
-                    <input asp-for="@Model.Country" class="form-control" />
-                    <span asp-validation-for="@Model.Country"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="@Model.Description"></label>
-                <textarea asp-for="@Model.Description" class="form-control" rows="10"></textarea>
-                <span asp-validation-for="@Model.Description"></span>
-            </div>
-
-            <div>
-                <input type="submit" value="Публикувай" class="btn btn-primary" />
-            </div>
-        </form>
+<h2>@this.ViewData["Title"]</h2>
+<form method="post" asp-controller="Job" asp-action="Create" class="form">
+    <div class="form-group">
+        <label asp-for="@Model.Title"></label>
+        <input asp-for="@Model.Title" class="form-control" />
+        <span asp-validation-for="@Model.Title"></span>
     </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.City"></label>
+            <input asp-for="@Model.City" class="form-control" />
+            <span asp-validation-for="@Model.City"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.Country"></label>
+            <input asp-for="@Model.Country" class="form-control" />
+            <span asp-validation-for="@Model.Country"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Description"></label>
+        <textarea asp-for="@Model.Description" class="form-control" rows="10"></textarea>
+        <span asp-validation-for="@Model.Description"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Публикувай" class="btn btn-primary" />
+    </div>
+</form>

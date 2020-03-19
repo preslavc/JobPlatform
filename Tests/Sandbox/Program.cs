@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using JobPlatform.Data;
     using JobPlatform.Data.Common;
     using JobPlatform.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using JobPlatform.Data.Seeding;
     using JobPlatform.Services.Data;
     using JobPlatform.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
