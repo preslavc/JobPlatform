@@ -85,7 +85,6 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
             [Phone]
             public string PhoneNumber { get; set; }
 
-
             [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
             [StringLength(50, ErrorMessage = "Потребителското име трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 4)]
             [Display(Name = "Потребителско име")]
@@ -129,11 +128,8 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
                     {
                         Eik = Input.Eik,
                         Name = Input.EmployerName,
-                        Location = new Location
-                        {
-                            City = Input.City,
-                            Country = Input.Country,
-                        },
+                        City = Input.City,
+                        Country = Input.Country,
                     },
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,

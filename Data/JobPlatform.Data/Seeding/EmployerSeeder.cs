@@ -20,11 +20,9 @@ namespace JobPlatform.Data.Seeding
             {
                 Name = "FirmBG",
                 Eik = "000000000",
-                Location = new Location
-                {
-                    City = "Sofia",
-                    Country = "Bulgaria",
-                },
+                City = "Sofia",
+                Country = "Bulgaria",
+                ImageUrl = "https://softuni.bg/companies/profile/logo/134",
             });
         }
     }

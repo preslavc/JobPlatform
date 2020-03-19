@@ -26,8 +26,6 @@
 
         public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<Location> Locations { get; set; }
-
         public DbSet<Employer> Employers { get; set; }
 
         public DbSet<JobPost> JobPosts { get; set; }

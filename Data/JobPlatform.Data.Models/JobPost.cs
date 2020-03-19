@@ -15,9 +15,9 @@
 
         public string Description { get; set; }
 
-        public int LocationId { get; set; }
+        public string City { get; set; }
 
-        public virtual Location Location { get; set; }
+        public string Country { get; set; }
 
         public int EmployerId { get; set; }
 
