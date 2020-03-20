@@ -4,7 +4,7 @@
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Data;
-    using JobPlatform.Web.Attributes;
+    using JobPlatform.Web.Infrastructure.Attributes;
     using JobPlatform.Web.ViewModels.Job;
 
     using Microsoft.AspNetCore.Authorization;

@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.ViewModels.ValidationAttributes
+﻿namespace JobPlatform.Web.Infrastructure.ValidationAttributes
 {
     using System.ComponentModel.DataAnnotations;
     using System.Text.RegularExpressions;
@@ -78,7 +78,6 @@
 
             remainder = (checksum % 11) % 10;
             return remainder == eik[12] - '0';
-
         }
     }
 }

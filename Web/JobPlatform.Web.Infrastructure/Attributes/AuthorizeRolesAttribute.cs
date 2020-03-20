@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.Attributes
+﻿namespace JobPlatform.Web.Infrastructure.Attributes
 {
     using Microsoft.AspNetCore.Authorization;
 

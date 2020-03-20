@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using JobPlatform.Common;
-using JobPlatform.Web.ViewModels.ValidationAttributes;
+using JobPlatform.Web.Infrastructure.ValidationAttributes;
 
 namespace JobPlatform.Web.Areas.Identity.Pages.Account
 {
