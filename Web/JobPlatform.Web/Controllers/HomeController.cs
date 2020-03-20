@@ -2,15 +2,27 @@
 {
     using System.Diagnostics;
 
+    using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels;
-
+    using JobPlatform.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IJobPostsService jobPostsService;
+
+        public HomeController(IJobPostsService jobPostsService)
+        {
+            this.jobPostsService = jobPostsService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

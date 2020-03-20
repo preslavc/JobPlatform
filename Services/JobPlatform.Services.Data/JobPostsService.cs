@@ -1,5 +1,6 @@
 ﻿namespace JobPlatform.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -30,6 +31,17 @@
             await this.jobPostsRepository.AddAsync(jobPost);
             await this.jobPostsRepository.SaveChangesAsync();
             return jobPost.Id;
+        }
+
+        public IEnumerable<T> GetAll<T>(int? count = null)
+        {
+            IQueryable<JobPost> query = this.jobPostsRepository.All().OrderByDescending(x => x.CreatedOn);
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
         }
 
         public T GetById<T>(int id)
