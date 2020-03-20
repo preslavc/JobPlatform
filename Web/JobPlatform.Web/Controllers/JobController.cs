@@ -46,7 +46,7 @@
                 createViewModel.City,
                 createViewModel.Country,
                 (int)user.EmployerId);
-            return this.RedirectToAction("Details", new { id = jobPostId });
+            return this.RedirectToAction(nameof(this.Details), new { id = jobPostId });
         }
 
         [Authorize]

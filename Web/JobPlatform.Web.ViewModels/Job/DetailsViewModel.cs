@@ -1,8 +1,8 @@
 ﻿namespace JobPlatform.Web.ViewModels.Job
 {
     using System;
-    using System.Collections.Generic;
 
+    using Ganss.XSS;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
 
@@ -21,6 +21,8 @@
         public string Date => this.CreatedOn.ToString("dd.MM.yyyy");
 
         public string Description { get; set; }
+
+        public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
         //public IEnumerable<string> Tags { get; set; }
     }

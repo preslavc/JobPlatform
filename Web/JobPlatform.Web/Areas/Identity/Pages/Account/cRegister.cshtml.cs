@@ -53,7 +53,6 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
             [Display(Name = "Име на компанията")]
             public string EmployerName { get; set; }
 
-            // TODO: City check in DB
             [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
             [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
             [Display(Name = "Град")]
@@ -64,7 +63,6 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
             [Display(Name = "Държава")]
             public string Country { get; set; }
 
-            // TODO: EIK check
             [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
             [EikValidation]
             [Display(Name = "ЕИК/БУЛСТАТ")]
