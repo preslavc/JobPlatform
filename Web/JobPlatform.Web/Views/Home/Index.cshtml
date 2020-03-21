@@ -3,19 +3,27 @@
 @{
     this.ViewData["Title"] = $"Welcome to {GlobalConstants.SystemName}!";
 }
-
 <div class="text-center">
     <h1 class="display-4">@this.ViewData["Title"]</h1>
+</div>
+
+<div class="card-columns">
+
     @foreach (var jobPost in Model.JobPosts)
     {
-        <div class="card">
-            <h5 class="card-title">@jobPost.Title</h5>
-            <h6>@jobPost.CreatedOn</h6>
-            <h6>@jobPost.Employer.City</h6>
-            <h6>@jobPost.Employer.Country</h6>
-            <h6>@jobPost.Employer.Name</h6>
-        </div>
+        <a asp-controller="Job" asp-action="Id" asp-route-id="@jobPost.Id">
+            <div class="card">
+                <div class="card-img" style="background-image: url('@jobPost.Employer.ImageUrl')"></div>
+                <div class="card-body">
+                    <h3 class="job-card__title">@jobPost.Title</h3>
+                    <h4 class="job-card__company-name">@jobPost.Employer.Name</h4>
+                    <h5 class="job-card__location">@jobPost.Employer.City, @jobPost.Employer.Country</h5>
+                    <p class="job-card__listed-status">@jobPost.CreatedOn</p>
+                </div>
+            </div>
+        </a>
     }
 </div>
+
 
 
