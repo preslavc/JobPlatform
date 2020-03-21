@@ -49,6 +49,27 @@
             return this.RedirectToAction(nameof(this.Id), new { id = jobPostId });
         }
 
+        [AuthorizeRoles(Common.GlobalConstants.AdministratorRoleName, Common.GlobalConstants.EmployerRoleName)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            JobPost jobPost = this.jobPostsService.GetJobPost(id);
+            if (jobPost == null)
+            {
+                return this.NotFound();
+            }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+
+            // TODO: Check for administrator
+            if (jobPost.EmployerId != user.EmployerId)
+            {
+                return this.Unauthorized();
+            }
+
+            await this.jobPostsService.DeleteAsync(jobPost);
+            return this.Redirect("/");
+        }
+
         [Authorize]
         public IActionResult Id(int id)
         {

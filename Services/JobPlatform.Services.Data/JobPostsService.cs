@@ -33,6 +33,18 @@
             return jobPost.Id;
         }
 
+        public async Task DeleteAsync(JobPost jobPost)
+        {
+            if (jobPost == null)
+            {
+                return;
+            }
+
+            this.jobPostsRepository.Delete(jobPost);
+            await this.jobPostsRepository.SaveChangesAsync();
+            return;
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
             IQueryable<JobPost> query = this.jobPostsRepository.All().OrderByDescending(x => x.CreatedOn);
@@ -49,6 +61,13 @@
             return this.jobPostsRepository.All()
                 .Where(x => x.Id == id)
                 .To<T>()
+                .FirstOrDefault();
+        }
+
+        public JobPost GetJobPost(int id)
+        {
+            return this.jobPostsRepository.All()
+                .Where(x => x.Id == id)
                 .FirstOrDefault();
         }
     }
