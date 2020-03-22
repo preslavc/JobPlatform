@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <h2 class="my-3">@Model.Name</h2>
+        @Html.Raw(Model.SanitizedDescription)
+    </div>
+    <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">
+        <img class="img-fluid" src="@Model.ImageUrl" alt="">
+        <hr />
+        <div>
+            @*<h6>Умения</h6>
+                @foreach (string tag in Model.Tags)
+                {
+                    <a class="badge badge-secondary" href="#/@tag">@tag</a>
+                }*@
+        </div>
+    </aside>
+</div>
+
+

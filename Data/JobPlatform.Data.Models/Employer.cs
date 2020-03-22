@@ -21,6 +21,8 @@
 
         public string ImageUrl { get; set; }
 
+        public string Description { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<JobPost> JobPosts { get; set; }

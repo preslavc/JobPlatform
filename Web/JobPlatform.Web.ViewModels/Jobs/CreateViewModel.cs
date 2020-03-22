@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.ViewModels.Job
+﻿namespace JobPlatform.Web.ViewModels.Jobs
 {
     using System.ComponentModel.DataAnnotations;
 
