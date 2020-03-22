@@ -45,6 +45,18 @@
             return;
         }
 
+        public async Task EditAsync(int id, string title, string description, string city, string country)
+        {
+            JobPost jobPost = this.GetJobPost(id);
+            jobPost.Title = title;
+            jobPost.Description = description;
+            jobPost.City = city;
+            jobPost.Country = country;
+
+            this.jobPostsRepository.Update(jobPost);
+            await this.jobPostsRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
             IQueryable<JobPost> query = this.jobPostsRepository.All().OrderByDescending(x => x.CreatedOn);

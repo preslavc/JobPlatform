@@ -49,7 +49,7 @@
             return this.RedirectToAction(nameof(this.Id), new { id = jobPostId });
         }
 
-        [AuthorizeRoles(Common.GlobalConstants.AdministratorRoleName, Common.GlobalConstants.EmployerRoleName)]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             JobPost jobPost = this.jobPostsService.GetJobPost(id);
@@ -60,14 +60,45 @@
 
             ApplicationUser user = await this.userManager.GetUserAsync(this.User);
 
-            // TODO: Check for administrator
-            if (jobPost.EmployerId != user.EmployerId)
+            if (jobPost.EmployerId != user.EmployerId && !this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName))
             {
                 return this.Unauthorized();
             }
 
             await this.jobPostsService.DeleteAsync(jobPost);
             return this.Redirect("/");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            EditViewModel viewModel = this.jobPostsService.GetById<EditViewModel>(id);
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+
+            if (viewModel.EmployerId != user.EmployerId && !this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName))
+            {
+                return this.Unauthorized();
+            }
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(EditViewModel editViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(editViewModel);
+            }
+
+            await this.jobPostsService.EditAsync(editViewModel.Id, editViewModel.Title, editViewModel.Description, editViewModel.City, editViewModel.Country);
+            return this.RedirectToAction(nameof(this.Id), new { id = editViewModel.Id });
         }
 
         [Authorize]
