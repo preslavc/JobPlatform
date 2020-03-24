@@ -58,9 +58,7 @@
                 return this.NotFound();
             }
 
-            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
-
-            if (jobPost.EmployerId != user.EmployerId && !this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName))
+            if (!await this.UserPermission(jobPost.EmployerId))
             {
                 return this.Unauthorized();
             }
@@ -78,9 +76,7 @@
                 return this.NotFound();
             }
 
-            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
-
-            if (viewModel.EmployerId != user.EmployerId && !this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName))
+            if (!await this.UserPermission(viewModel.EmployerId))
             {
                 return this.Unauthorized();
             }
@@ -110,10 +106,20 @@
                 return this.NotFound();
             }
 
-            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
-            viewModel.EditPermission = viewModel.Employer.Id == user.EmployerId || this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName);
+            viewModel.EditPermission = await this.UserPermission(viewModel.Employer.Id);
 
             return this.View(viewModel);
+        }
+
+        /// <summary>
+        /// Check if user have permission for operation.
+        /// </summary>
+        /// <param name="employerId"></param>
+        /// <returns>Return true, if check pass.</returns>
+        private async Task<bool> UserPermission(int employerId)
+        {
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            return employerId == user.EmployerId || this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName);
         }
     }
 }
