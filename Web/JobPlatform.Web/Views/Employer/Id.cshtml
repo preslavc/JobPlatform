@@ -12,6 +12,19 @@
         <img class="img-fluid" src="@Model.ImageUrl" alt="">
         <hr />
         <div>
+            <h5>Всички обяви на @Model.Name</h5>
+            <hr />
+            @foreach (var job in Model.JobPosts)
+            {
+                <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
+                    <div class="text-body">
+                        <h6 class="job-card__title">@job.Title</h6>
+                        <h7 class="job-card__location">@job.City, @job.Country</h7>
+                        <p class="job-card__listed-status">@job.CreatedOn</p>
+                    </div>
+                    <hr />
+                </a>
+            }
             @*<h6>Умения</h6>
                 @foreach (string tag in Model.Tags)
                 {

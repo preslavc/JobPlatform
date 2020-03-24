@@ -1,7 +1,8 @@
 ﻿namespace JobPlatform.Web.ViewModels.Employers
 {
-    using Ganss.XSS;
+    using System.Collections.Generic;
 
+    using Ganss.XSS;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
 
@@ -14,5 +15,7 @@
         public string Description { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
+
+        public ICollection<JobPostsByEmployerViewModel> JobPosts { get; set; }
     }
 }
