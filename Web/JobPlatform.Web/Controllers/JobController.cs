@@ -102,13 +102,16 @@
         }
 
         [Authorize]
-        public IActionResult Id(int id)
+        public async Task<IActionResult> Id(int id)
         {
             DetailsViewModel viewModel = this.jobPostsService.GetById<DetailsViewModel>(id);
             if (viewModel == null)
             {
                 return this.NotFound();
             }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            viewModel.EditPermission = viewModel.Employer.Id == user.EmployerId || this.User.IsInRole(Common.GlobalConstants.AdministratorRoleName);
 
             return this.View(viewModel);
         }

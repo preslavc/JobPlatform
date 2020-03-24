@@ -1,12 +1,23 @@
-﻿
+﻿@using JobPlatform.Common
 @{
     ViewData["Title"] = "Details";
 }
 
 <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
-        <h2 class="my-3">@Model.Title</h2>
-        @Html.Raw(Model.SanitizedDescription)
+        <div>
+            <h2 class="my-3">@Model.Title</h2>
+            @if (Model.EditPermission)
+            {
+                <div>
+                    <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a>
+                    <a asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a>
+                </div>
+            }
+
+            @Html.Raw(Model.SanitizedDescription)
+        </div>
+        <br />
         <div class="text-center">
             <input type="submit" value="Кандидатствай" class="btn btn-primary" />
         </div>
@@ -14,7 +25,11 @@
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">
         <img class="img-fluid" src="@Model.Employer.ImageUrl" alt="">
         <p class="form-text">
-            @Model.Employer.Name <br>
+
+            <a asp-controller="Employer" asp-action="Id" asp-route-id="@Model.Employer.Id">
+                @Model.Employer.Name
+            </a>
+            <br>
             @Model.City, @Model.Country <br>
             @Model.Date
         </p>
