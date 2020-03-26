@@ -11,7 +11,8 @@
             {
                 <div>
                     <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a>
-                    <a asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a>
+                    @*<a asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a>*@
+                    <a onclick="ConfirmBox()">Изтрий</a>
                 </div>
             }
 
@@ -43,3 +44,13 @@
         </div>
     </aside>
 </div>
+
+@section Scripts{
+    <script>
+        function ConfirmBox() {
+            if (confirm("Наистина ли искаш да премахнеш обявата?")) {
+                window.location.replace("/Job/Delete/@Model.Id");
+            }
+        }
+    </script>
+}

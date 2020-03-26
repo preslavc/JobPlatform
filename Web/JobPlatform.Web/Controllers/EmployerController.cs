@@ -2,6 +2,7 @@
 {
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels.Employers;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class EmployerController : BaseController
@@ -13,6 +14,7 @@
             this.employerService = employerService;
         }
 
+        [Authorize]
         public IActionResult Id(int id)
         {
             EmployerDetailsViewModel viewModel = this.employerService.GetById<EmployerDetailsViewModel>(id);
