@@ -53,6 +53,7 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Държава")]
             public string Country { get; set; }
 
+            [Display(Name = "Описание")]
             public string Description { get; set; }
         }
 
@@ -72,7 +73,7 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
             };
         }
 
-        //TODO: Add Description and Image 
+        //TODO: Add Image 
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await this.userManager.GetUserAsync(User);
@@ -101,6 +102,8 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
             await this.employerService.EditAsync((int)user.EmployerId, Input.City, Input.Country, Input.Description);
 
             await this.signInManager.RefreshSignInAsync(user);
+
+            StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
     }
