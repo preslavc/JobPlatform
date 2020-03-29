@@ -8,11 +8,11 @@
     {
         public Tag()
         {
-            this.Jobs = new HashSet<JobTag>();
+            this.JobPosts = new HashSet<JobTag>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<JobTag> Jobs { get; set; }
+        public virtual ICollection<JobTag> JobPosts { get; set; }
     }
 }

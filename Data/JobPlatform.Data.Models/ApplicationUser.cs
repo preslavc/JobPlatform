@@ -24,7 +24,7 @@ namespace JobPlatform.Data.Models
 
         public int? EmployerId { get; set; }
 
-        public Employer Employer { get; set; }
+        public virtual Employer Employer { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

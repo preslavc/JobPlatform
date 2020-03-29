@@ -1,6 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.Jobs
 {
     using System;
+    using System.Collections.Generic;
 
     using Ganss.XSS;
     using JobPlatform.Data.Models;
@@ -28,6 +29,6 @@
 
         public bool EditPermission { get; set; }
 
-        //public IEnumerable<string> Tags { get; set; }
+        public IEnumerable<TagViewModel> Tags { get; set; }
     }
 }

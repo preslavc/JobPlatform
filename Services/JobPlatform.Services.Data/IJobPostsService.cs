@@ -7,7 +7,7 @@
 
     public interface IJobPostsService
     {
-        Task<int> CreateAsync(string title, string description, string city, string country, int employerId);
+        Task<int> CreateAsync(string title, string description, string city, string country, int employerId, string tags);
 
         Task EditAsync(int id, string title, string description, string city, string country);
 

@@ -36,11 +36,11 @@
         </p>
         <hr />
         <div>
-            @*<h6>Умения</h6>
-                @foreach (string tag in Model.Tags)
+            <h6>Тагове</h6>
+                @foreach (var tag in Model.Tags)
                 {
-                    <a class="badge badge-secondary" href="#/@tag">@tag</a>
-                }*@
+                    <a class="badge badge-secondary" href="#/@tag">@tag.Name</a>
+                }
         </div>
     </aside>
 </div>

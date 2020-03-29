@@ -11,13 +11,17 @@
     public class JobPostsService : IJobPostsService
     {
         private readonly IDeletableEntityRepository<JobPost> jobPostsRepository;
+        private readonly ITagService tagService;
 
-        public JobPostsService(IDeletableEntityRepository<JobPost> jobPostsRepository)
+        public JobPostsService(
+            IDeletableEntityRepository<JobPost> jobPostsRepository,
+            ITagService tagService)
         {
             this.jobPostsRepository = jobPostsRepository;
+            this.tagService = tagService;
         }
 
-        public async Task<int> CreateAsync(string title, string description, string city, string country, int employerId)
+        public async Task<int> CreateAsync(string title, string description, string city, string country, int employerId, string tags)
         {
             JobPost jobPost = new JobPost
             {
@@ -27,9 +31,9 @@
                 Country = country,
                 EmployerId = employerId,
             };
-
             await this.jobPostsRepository.AddAsync(jobPost);
             await this.jobPostsRepository.SaveChangesAsync();
+            await this.tagService.AddAsync(jobPost.Id, tags);
             return jobPost.Id;
         }
 

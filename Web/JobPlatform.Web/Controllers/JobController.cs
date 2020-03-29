@@ -45,7 +45,8 @@
                 createViewModel.Description,
                 createViewModel.City,
                 createViewModel.Country,
-                (int)user.EmployerId);
+                (int)user.EmployerId,
+                createViewModel.Tags);
             return this.RedirectToAction(nameof(this.Id), new { id = jobPostId });
         }
 

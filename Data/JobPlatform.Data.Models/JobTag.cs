@@ -1,6 +1,8 @@
 ﻿namespace JobPlatform.Data.Models
 {
-    public class JobTag
+    using JobPlatform.Data.Common.Models;
+
+    public class JobTag : BaseModel<int>
     {
         public int JobPostId { get; set; }
 

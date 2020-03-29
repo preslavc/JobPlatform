@@ -22,5 +22,9 @@
         [Required]
         [MaxLength(20)]
         public string City { get; set; }
+
+        [Display(Name = "Тагове")]
+        [MaxLength(100)]
+        public string Tags { get; set; }
     }
 }
