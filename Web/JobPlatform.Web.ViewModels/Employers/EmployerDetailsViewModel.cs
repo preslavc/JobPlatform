@@ -5,6 +5,7 @@
     using Ganss.XSS;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
+    using JobPlatform.Web.ViewModels.Home;
 
     public class EmployerDetailsViewModel : IMapFrom<Employer>
     {
@@ -16,6 +17,6 @@
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
-        public ICollection<JobPostsByEmployerViewModel> JobPosts { get; set; }
+        public ICollection<JobPostViewModel> JobPosts { get; set; }
     }
 }

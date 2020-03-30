@@ -1,10 +1,12 @@
 ﻿namespace JobPlatform.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
+    using JobPlatform.Services.Mapping;
 
     public class TagService : ITagService
     {
@@ -35,6 +37,18 @@
 
             await this.jobTagRepository.SaveChangesAsync();
             return;
+        }
+
+        public IEnumerable<T> GetAll<T>(string tagName)
+        {
+            Tag tag = this.tagRepository.All().Where(x => x.Name == tagName).FirstOrDefault();
+            if (tag == null)
+            {
+                return null;
+            }
+
+            IQueryable<JobTag> query = this.jobTagRepository.All().Where(x => x.TagId == tag.Id).OrderByDescending(x => x.CreatedOn);
+            return query.To<T>().ToList();
         }
 
         private async Task<Tag> GetOrCreateAsync(string name)

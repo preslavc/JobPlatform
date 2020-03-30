@@ -6,7 +6,7 @@
     using JobPlatform.Services.Data;
     using JobPlatform.Web.Infrastructure.Attributes;
     using JobPlatform.Web.ViewModels.Jobs;
-
+    using JobPlatform.Web.ViewModels.Tags;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -15,13 +15,16 @@
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IJobPostsService jobPostsService;
+        private readonly ITagService tagService;
 
         public JobController(
             UserManager<ApplicationUser> userManager,
-            IJobPostsService jobPostsService)
+            IJobPostsService jobPostsService,
+            ITagService tagService)
         {
             this.userManager = userManager;
             this.jobPostsService = jobPostsService;
+            this.tagService = tagService;
         }
 
         [AuthorizeRoles(Common.GlobalConstants.AdministratorRoleName, Common.GlobalConstants.EmployerRoleName)]
@@ -108,6 +111,30 @@
             }
 
             viewModel.EditPermission = await this.UserPermission(viewModel.Employer.Id);
+
+            return this.View(viewModel);
+        }
+
+        [Route("Job/Tagged/")]
+        [Route("Job/Tagged/{tagName}")]
+        public IActionResult Tagged(string tagName)
+        {
+            if (tagName == null || tagName == string.Empty)
+            {
+                return this.Redirect("/");
+            }
+
+            tagName = tagName.ToLower();
+            TagIndexViewModel viewModel = new TagIndexViewModel()
+            {
+                Name = tagName,
+                JobPosts = this.tagService.GetAll<TaggedJobsViewModel>(tagName),
+            };
+
+            if (viewModel.JobPosts == null)
+            {
+                return this.NotFound();
+            }
 
             return this.View(viewModel);
         }

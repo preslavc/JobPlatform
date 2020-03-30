@@ -39,7 +39,7 @@
             <h6>Тагове</h6>
                 @foreach (var tag in Model.Tags)
                 {
-                    <a class="badge badge-secondary" href="#/@tag">@tag.Name</a>
+                    <a class="badge badge-secondary" href="/Job/Tagged/@tag.Name">@tag.Name</a>
                 }
         </div>
     </aside>
