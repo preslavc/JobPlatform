@@ -1,6 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.Home
 {
     using System;
+    using System.Collections.Generic;
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
@@ -18,5 +19,7 @@
         public DateTime CreatedOn { get; set; }
 
         public Employer Employer { get; set; }
+
+        public IEnumerable<JobTag> Tags { get; set; }
     }
 }

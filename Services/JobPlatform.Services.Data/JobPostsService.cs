@@ -72,6 +72,20 @@
             return query.To<T>().ToList();
         }
 
+        public IEnumerable<T> GetAllBy<T>(string keyword = null, string city = null, int? count = null)
+        {
+            IQueryable<JobPost> query = this.jobPostsRepository.All()
+                .Where(x => x.Title.Contains(keyword) || x.Tags.Any(t => t.Tag.Name == keyword) || x.City == city)
+                .OrderByDescending(x => x.CreatedOn);
+
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
+
         public T GetById<T>(int id)
         {
             return this.jobPostsRepository.All()

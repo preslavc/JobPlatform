@@ -25,6 +25,15 @@
             return this.View(viewModel);
         }
 
+        public IActionResult Search(string keyword, string city)
+        {
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                JobPosts = this.jobPostsService.GetAllBy<JobPostViewModel>(keyword, city),
+            };
+            return this.View(viewModel);
+        }
+
         public IActionResult HttpError(int statusCode)
         {
             return this.View(statusCode);

@@ -18,5 +18,7 @@
         T GetById<T>(int id);
 
         IEnumerable<T> GetAll<T>(int? count = null);
+
+        IEnumerable<T> GetAllBy<T>(string keyword, string city, int? count = null);
     }
 }
