@@ -1,48 +1,24 @@
 ﻿@using JobPlatform.Common
 @model JobPlatform.Web.ViewModels.Home.IndexViewModel
 @{
-    this.ViewData["Title"] = $"Welcome to {GlobalConstants.SystemName}!";
+    this.ViewData["Title"] = "Обяви за работа: ";
 }
-<div class="text-center">
-    <h1 class="display-4">@this.ViewData["Title"]</h1>
-</div>
+<partial name="_SearchPartial" model="Model.SearchPartialViewModel" />
 
-<div class="row">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @*<label asp-for=@Model.KeywordSearch></label>*@
-            <input asp-for=@Model.Keyword class="form-control" />
-            <span asp-validation-for=@Model.Keyword class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-6">
-            @*<label asp-for=@Model.CitySearch></label>*@
-            <input asp-for=@Model.City class="form-control" />
-            <span asp-validation-for=@Model.City class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <a asp-action="Search" class="btn btn-primary">Save</a>
-    </div>
+<div class="text-body display-4">
+    @if (Model.JobPosts.Count() == 0)
+    {
+        <h4>Няма намерени резултати</h4>
+    }
+    else
+    {
+        <h4>Намерени обяви:</h4>
+    }
 </div>
 
 <div class="card-columns">
     @foreach (var jobPost in Model.JobPosts)
     {
-        <div class="card">
-            <div class="card-img" style="background-image: url('@jobPost.Employer.ImageUrl')"></div>
-            <div class="card-body">
-                <a asp-controller="Job" asp-action="Id" asp-route-id="@jobPost.Id">
-                    <h3 class="job-card__title">@jobPost.Title</h3>
-                </a>
-                <a asp-controller="Employer" asp-action="Id" asp-route-id="@jobPost.Employer.Id">
-                    <h4 class="job-card__company-name">@jobPost.Employer.Name</h4>
-                </a>
-                <h5 class="job-card__location">@jobPost.City, @jobPost.Country</h5>
-                <p class="job-card__listed-status">@jobPost.CreatedOn</p>
-            </div>
-        </div>
+        <partial name="_JobBrowsePartial" model="jobPost" />
     }
 </div>
-
-
-

@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.ViewModels.Home
+﻿namespace JobPlatform.Web.ViewModels.Shared
 {
     using System;
     using System.Collections.Generic;

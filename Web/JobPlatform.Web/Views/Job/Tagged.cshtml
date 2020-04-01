@@ -9,19 +9,6 @@
 
     @foreach (var jobPost in Model.JobPosts)
     {
-
-        <div class="card">
-            <div class="card-img" style="background-image: url('@jobPost.Employer.ImageUrl')"></div>
-            <div class="card-body">
-                <a asp-controller="Job" asp-action="Id" asp-route-id="@jobPost.Id">
-                    <h3 class="job-card__title">@jobPost.Title</h3>
-                </a>
-                <a asp-controller="Employer" asp-action="Id" asp-route-id="@jobPost.Employer.Id">
-                    <h4 class="job-card__company-name">@jobPost.JobPost.Employer.Name</h4>
-                </a>
-                <h5 class="job-card__location">@jobPost.City, @jobPost.Country</h5>
-                <p class="job-card__listed-status">@jobPost.CreatedOn</p>
-            </div>
-        </div>
+        <partial name="_JobBrowsePartial" model="jobPost.JobPost" />
     }
 </div>

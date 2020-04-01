@@ -1,17 +1,17 @@
 ﻿namespace JobPlatform.Web.ViewModels.Home
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+
+    using JobPlatform.Web.ViewModels.Shared;
 
     public class IndexViewModel
     {
-        [Display(Prompt = "Ключова дума")]
-        [MaxLength(50)]
-        public string Keyword { get; set; }
+        public IndexViewModel()
+        {
+            this.SearchPartialViewModel = new SearchPartialViewModel();
+        }
 
-        [Display(Prompt = "Град")]
-        [MaxLength(50)]
-        public string City { get; set; }
+        public SearchPartialViewModel SearchPartialViewModel { get; set; }
 
         public IEnumerable<JobPostViewModel> JobPosts { get; set; }
     }

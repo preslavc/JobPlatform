@@ -7,40 +7,11 @@
     <h1 class="display-4">@this.ViewData["Title"]</h1>
 </div>
 
-<div class="row">
-    <form asp-controller="Home" asp-action="Search" asp-route-keyword="@Model.Keyword" asp-route-city="@Model.City" method="get">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <input id="#keyword" asp-for=@Model.Keyword class="form-control" />
-                <span asp-validation-for=@Model.Keyword class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <input id="#city" asp-for=@Model.City class="form-control" />
-                <span asp-validation-for=@Model.City class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Търси</button>
-        </div>
-    </form>
-</div>
+<partial name="_SearchPartial" model="@Model.SearchPartialViewModel" />
 
 <div class="card-columns">
     @foreach (var jobPost in Model.JobPosts)
     {
-        <div class="card">
-            <div class="card-img" style="background-image: url('@jobPost.Employer.ImageUrl')"></div>
-            <div class="card-body">
-                <a asp-controller="Job" asp-action="Id" asp-route-id="@jobPost.Id">
-                    <h3 class="job-card__title">@jobPost.Title</h3>
-                </a>
-                <a asp-controller="Employer" asp-action="Id" asp-route-id="@jobPost.Employer.Id">
-                    <h4 class="job-card__company-name">@jobPost.Employer.Name</h4>
-                </a>
-                <h5 class="job-card__location">@jobPost.City, @jobPost.Country</h5>
-                <p class="job-card__listed-status">@jobPost.CreatedOn</p>
-            </div>
-        </div>
+        <partial name="_JobBrowsePartial" model="jobPost" />
     }
 </div>
-
-
-

@@ -5,6 +5,7 @@
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels;
     using JobPlatform.Web.ViewModels.Home;
+    using JobPlatform.Web.ViewModels.Shared;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
