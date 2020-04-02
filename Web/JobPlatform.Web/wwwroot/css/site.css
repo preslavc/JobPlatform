@@ -58,34 +58,6 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
-.job-card__title {
-    font-size: 1.4rem;
-    line-height: 1.42857;
-    font-weight: 600;
-    color: rgba(0,0,0,.9);
-}
-
-.job-card__company-name {
-    font-size: 1.4rem;
-    line-height: 1.42857;
-    font-weight: 400;
-    color: rgba(0,0,0,.9);
-}
-
-.job-card__location {
-    font-size: 1.2rem;
-    line-height: 1.33333;
-    font-weight: 400;
-    color: rgba(0,0,0,.6);
-}
-
-.job-card__listed-status {
-    font-size: 1.2rem;
-    line-height: 1.33333;
-    font-weight: 400;
-    color: rgba(0,0,0,.6);
-}
-
 .card-columns .card:hover {
     box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
 }
@@ -100,9 +72,6 @@ body {
     line-height: 1.42857;
     font-weight: 600;
     color: rgba(0,0,0,.9);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 .job-card_company-name {
@@ -124,4 +93,10 @@ body {
     line-height: 1.33333;
     font-weight: 400;
     color: rgba(0,0,0,.6);
+}
+
+.text-overflow__ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

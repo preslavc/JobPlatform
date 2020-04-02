@@ -9,9 +9,11 @@
 
 <partial name="_SearchPartial" model="@Model.SearchPartialViewModel" />
 
-<div class="card-columns">
-    @foreach (var jobPost in Model.JobPosts)
-    {
-        <partial name="_JobBrowsePartial" model="jobPost" />
-    }
+<div class="container">
+    <div class="row">
+        @foreach (var jobPost in Model.JobPosts)
+        {
+            <partial name="_JobBrowsePartial" model="jobPost" />
+        }
+    </div>
 </div>
