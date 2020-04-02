@@ -12,6 +12,7 @@ a.navbar-brand {
 html {
     font-size: 14px;
 }
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -21,6 +22,7 @@ html {
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
@@ -45,6 +47,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -85,4 +88,40 @@ body {
 
 .card-columns .card:hover {
     box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
+}
+
+.job-card_img {
+    width: 64px;
+    height: 64px;
+}
+
+.job-card_title {
+    font-size: 1.3rem;
+    line-height: 1.42857;
+    font-weight: 600;
+    color: rgba(0,0,0,.9);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.job-card_company-name {
+    font-size: 1.1rem;
+    line-height: 1.42857;
+    font-weight: 400;
+    color: rgba(0,0,0,.9);
+}
+
+.job-card_location {
+    font-size: 1rem;
+    line-height: 1.33333;
+    font-weight: 400;
+    color: rgba(0,0,0,.6);
+}
+
+.job-card_listed-status {
+    font-size: 1rem;
+    line-height: 1.33333;
+    font-weight: 400;
+    color: rgba(0,0,0,.6);
 }

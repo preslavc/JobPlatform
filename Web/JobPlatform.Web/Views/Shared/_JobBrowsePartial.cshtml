@@ -1,15 +1,15 @@
 ﻿@model JobPlatform.Web.ViewModels.Shared.JobPostViewModel
+
 <div class="card">
-    <div class="card-img" style="background-image: url('@Model.Employer.ImageUrl')"></div>
-    <div class="card-body">
+    <div class="card-body text-center">
+        <img class="avatar rounded-circle job-card_img" src="@Model.Employer.ImageUrl" alt="Bologna">
         <a asp-controller="Job" asp-action="Id" asp-route-id="@Model.Id">
-            <h3 class="job-card__title">@Model.Title</h3>
+            <h5 class="job-card_title">@Model.Title</h5>
         </a>
         <a asp-controller="Employer" asp-action="Id" asp-route-id="@Model.Employer.Id">
-            <h4 class="job-card__company-name">@Model.Employer.Name</h4>
+            <h6 class="card-subtitle mb-2 text-muted">@Model.Employer.Name</h6>
         </a>
-        <h5 class="job-card__location">@Model.City, @Model.Country</h5>
-        <p class="job-card__listed-status">@Model.CreatedOn</p>
+        <p class="card-text">@Model.City, @Model.Country<br />@Model.CreatedOn</p>
     </div>
 </div>
 
