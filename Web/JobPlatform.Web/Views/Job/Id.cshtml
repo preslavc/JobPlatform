@@ -11,8 +11,7 @@
             {
                 <div>
                     <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a>
-                    @*<a asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">Изтрий</a>*@
-                    <a onclick="ConfirmBox()">Изтрий</a>
+                    <a data-toggle="modal" data-target="#dialogBox">Изтрий</a>
                 </div>
             }
 
@@ -45,12 +44,22 @@
     </aside>
 </div>
 
-@section Scripts{
-    <script>
-        function ConfirmBox() {
-            if (confirm("Наистина ли искаш да премахнеш обявата?")) {
-                window.location.replace("/Job/Delete/@Model.Id");
-            }
-        }
-    </script>
-}
+<div class="modal fade" id="dialogBox" tabindex="-1" role="dialog" aria-labelledby="dialogBoxTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title" id="dialogBoxLongTitle">Сигурни ли сте, че желаете да изтриете обявата?</h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Отказ">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-danger">"@Model.Title"</h5>
+                <form asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="button" class="btn btn-secondary align-left" data-dismiss="modal">Отказ</button>
+                    <button type="submit" class="btn btn-primary">Изтриване</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

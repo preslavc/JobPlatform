@@ -1,11 +1,11 @@
 ﻿@model JobPlatform.Web.ViewModels.Shared.SearchPartialViewModel
 
 <form class="form-inline md-1" asp-controller="Home" asp-action="Search" asp-route-keyword="@Model.Keyword" asp-route-city="@Model.City" method="get">
-    <div class="form-group mb-1">
+    <div class="form-group mb-2">
         <input asp-for=@Model.Keyword class="form-control" />
         <span asp-validation-for=@Model.Keyword class="text-danger"></span>
     </div>
-    <div class="form-group mx-sm-3 mb-1">
+    <div class="form-group mx-sm-3 mb-2 mr-2">
         <input asp-for=@Model.City class="form-control" />
         <span asp-validation-for=@Model.City class="text-danger"></span>
     </div>
