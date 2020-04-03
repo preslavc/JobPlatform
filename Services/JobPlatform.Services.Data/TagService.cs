@@ -23,6 +23,11 @@
 
         public async Task AddAsync(int jobPostId, string tagNames)
         {
+            if (string.IsNullOrEmpty(tagNames))
+            {
+                return;
+            }
+
             string[] tags = tagNames.ToLower().Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var t in tags)
@@ -37,18 +42,6 @@
 
             await this.jobTagRepository.SaveChangesAsync();
             return;
-        }
-
-        public IEnumerable<T> GetAll<T>(string tagName)
-        {
-            Tag tag = this.tagRepository.All().Where(x => x.Name == tagName).FirstOrDefault();
-            if (tag == null)
-            {
-                return null;
-            }
-
-            IQueryable<JobTag> query = this.jobTagRepository.All().Where(x => x.TagId == tag.Id).OrderByDescending(x => x.CreatedOn);
-            return query.To<T>().ToList();
         }
 
         private async Task<Tag> GetOrCreateAsync(string name)

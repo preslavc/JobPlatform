@@ -37,19 +37,21 @@
                 page = 1;
             }
 
-            IndexViewModel viewModel = new IndexViewModel
+            IndexViewModel viewModel = new IndexViewModel();
+            viewModel.JobsDisplayViewModel = new JobsDisplayViewModel()
             {
                 JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(page),
+                PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage),
+                CurrentPage = (int)page,
             };
 
-            viewModel.PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage);
-            viewModel.CurrentPage = (int)page;
             return this.View(viewModel);
         }
 
         public IActionResult Search(string keyword, string city)
         {
-            IndexViewModel viewModel = new IndexViewModel
+            IndexViewModel viewModel = new IndexViewModel();
+            viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
             {
                 JobPosts = this.jobPostsService.GetAllBy<JobPostViewModel>(keyword, city),
             };

@@ -4,11 +4,12 @@
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
+    using JobPlatform.Web.ViewModels.Shared;
 
     public class TagIndexViewModel
     {
         public string Name { get; set; }
 
-        public IEnumerable<TaggedJobsViewModel> JobPosts { get; set; }
+        public JobsDisplayViewModel JobsDisplayViewModel { get; set; }
     }
 }

@@ -22,5 +22,7 @@
         double GetJobCount();
 
         IEnumerable<T> GetAllBy<T>(string keyword, string city, int? count = null);
+
+        IEnumerable<T> GetAllByTag<T>(string keyword);
     }
 }

@@ -6,7 +6,5 @@
     public interface ITagService
     {
         Task AddAsync(int jobPostId, string tagNames);
-
-        IEnumerable<T> GetAll<T>(string tagName);
     }
 }

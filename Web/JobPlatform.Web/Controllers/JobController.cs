@@ -6,6 +6,7 @@
     using JobPlatform.Services.Data;
     using JobPlatform.Web.Infrastructure.Attributes;
     using JobPlatform.Web.ViewModels.Jobs;
+    using JobPlatform.Web.ViewModels.Shared;
     using JobPlatform.Web.ViewModels.Tags;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -128,13 +129,12 @@
             TagIndexViewModel viewModel = new TagIndexViewModel()
             {
                 Name = tagName,
-                JobPosts = this.tagService.GetAll<TaggedJobsViewModel>(tagName),
             };
 
-            if (viewModel.JobPosts == null)
+            viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
             {
-                return this.NotFound();
-            }
+                JobPosts = this.jobPostsService.GetAllByTag<JobPostViewModel>(tagName),
+            };
 
             return this.View(viewModel);
         }

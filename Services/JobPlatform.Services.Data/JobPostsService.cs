@@ -91,6 +91,13 @@
             return query.To<T>().ToList();
         }
 
+        public IEnumerable<T> GetAllByTag<T>(string keyword)
+        {
+            IQueryable<JobPost> query = this.jobPostsRepository.All()
+                .Where(x => x.Tags.Any(t => t.Tag.Name == keyword)).OrderByDescending(x => x.CreatedOn);
+            return query.To<T>().ToList();
+        }
+
         public T GetById<T>(int id)
         {
             return this.jobPostsRepository.All()

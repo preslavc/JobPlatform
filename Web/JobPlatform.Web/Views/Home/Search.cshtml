@@ -6,7 +6,7 @@
 <partial name="_SearchPartial" model="Model.SearchPartialViewModel" />
 
 <div class="text-body display-4">
-    @if (Model.JobPosts.Count() == 0)
+    @if (Model.JobsDisplayViewModel.JobPosts.Count() == 0)
     {
         <h4>Няма намерени резултати</h4>
     }
@@ -16,11 +16,4 @@
     }
 </div>
 
-<div class="container">
-    <div class="row">
-        @foreach (var jobPost in Model.JobPosts)
-        {
-            <partial name="_JobBrowsePartial" model="jobPost" />
-        }
-    </div>
-</div>
+<partial name="_JobBrowsePartial" model="@Model.JobsDisplayViewModel" />
