@@ -10,8 +10,8 @@
             @if (Model.EditPermission)
             {
                 <div>
-                    <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">Редактирай</a>
-                    <a data-toggle="modal" data-target="#dialogBox">Изтрий</a>
+                    <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">[Редактирай]</a>
+                    <a class="btn-link" data-toggle="modal" data-target="#dialogBox">[Изтрий]</a>
                 </div>
             }
 
@@ -35,11 +35,14 @@
         </p>
         <hr />
         <div>
-            <h6>Тагове</h6>
+            @if (Model.Tags.Count != 0)
+            {
+                <h6>Тагове</h6>
                 @foreach (var tag in Model.Tags)
                 {
                     <a class="badge badge-secondary" href="/Job/Tagged/@tag.Name">@tag.Name</a>
                 }
+            }
         </div>
     </aside>
 </div>

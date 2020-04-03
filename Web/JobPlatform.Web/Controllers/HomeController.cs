@@ -1,7 +1,9 @@
 ﻿namespace JobPlatform.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
 
+    using JobPlatform.Common;
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels;
     using JobPlatform.Web.ViewModels.Home;
@@ -17,12 +19,31 @@
             this.jobPostsService = jobPostsService;
         }
 
-        public IActionResult Index()
+        // public IActionResult Index()
+        // {
+        //     IndexViewModel viewModel = new IndexViewModel
+        //     {
+        //         JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
+        //     };
+        //     return this.View(viewModel);
+        // }
+        [Route("/")]
+        [Route("Home/Index/")]
+        [Route("Home/Index/{page}")]
+        public IActionResult Index(int? page)
         {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
             IndexViewModel viewModel = new IndexViewModel
             {
-                JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
+                JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(page),
             };
+
+            viewModel.PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage);
+            viewModel.CurrentPage = (int)page;
             return this.View(viewModel);
         }
 

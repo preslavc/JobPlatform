@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using JobPlatform.Common;
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
@@ -61,13 +62,17 @@
             await this.jobPostsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public IEnumerable<T> GetAll<T>(int? page = null)
         {
-            IQueryable<JobPost> query = this.jobPostsRepository.All().OrderByDescending(x => x.CreatedOn);
-            if (count.HasValue)
+            if (!page.HasValue)
             {
-                query = query.Take(count.Value);
+                page = 1;
             }
+
+            IQueryable<JobPost> query = this.jobPostsRepository.All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
 
             return query.To<T>().ToList();
         }
@@ -92,6 +97,11 @@
                 .Where(x => x.Id == id)
                 .To<T>()
                 .FirstOrDefault();
+        }
+
+        public double GetJobCount()
+        {
+            return this.jobPostsRepository.All().Count();
         }
 
         public JobPost GetJobPost(int id)

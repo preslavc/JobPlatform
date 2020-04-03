@@ -17,5 +17,7 @@
         public const string ErrorMessagePhoneField = "Невалиден телефонен номер";
 
         public const string ErrorMessageInvalidEik = "ЕИК/БУЛСТАТ не е валиден!";
+
+        public const int ItemsPerPage = 12;
     }
 }
