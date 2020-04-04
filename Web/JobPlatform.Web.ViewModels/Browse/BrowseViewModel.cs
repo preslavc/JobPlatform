@@ -1,10 +1,8 @@
-﻿namespace JobPlatform.Web.ViewModels.Home
+﻿namespace JobPlatform.Web.ViewModels.Browse
 {
-    using JobPlatform.Web.ViewModels.Browse;
-
-    public class IndexViewModel
+    public class BrowseViewModel
     {
-        public IndexViewModel()
+        public BrowseViewModel()
         {
             this.SearchPartialViewModel = new SearchPartialViewModel();
         }

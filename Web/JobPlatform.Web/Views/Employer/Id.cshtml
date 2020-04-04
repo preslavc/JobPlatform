@@ -18,18 +18,18 @@
             {
                 <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
                     <div class="text-body">
-                        <h6 class="job-card__title">@job.Title</h6>
-                        <h7 class="job-card__location">@job.City, @job.Country</h7>
-                        <p class="job-card__listed-status">@job.CreatedOn</p>
+                        <h6 class="job-card_title">@job.Title</h6>
+                        <h7 class="job-card_location">@job.City, @job.Country</h7>
+                        <p class="job-card_listed-status">@job.CreatedOn</p>
                     </div>
-                    <hr />
                 </a>
-            }
-            @*<h6>Умения</h6>
-                @foreach (string tag in Model.Tags)
+                @foreach (var tag in job.Tags)
                 {
-                    <a class="badge badge-secondary" href="#/@tag">@tag</a>
-                }*@
+                    <a class="badge badge-secondary" asp-controller="Browse" asp-action="JobsByTag" asp-route-tag="@tag.Name">@tag.Name</a>
+                }
+                <hr />
+            }
+
         </div>
     </aside>
 </div>

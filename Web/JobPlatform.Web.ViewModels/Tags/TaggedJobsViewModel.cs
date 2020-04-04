@@ -4,7 +4,7 @@
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
-    using JobPlatform.Web.ViewModels.Shared;
+    using JobPlatform.Web.ViewModels.Browse;
 
     public class TaggedJobsViewModel : IMapFrom<JobTag>
     {

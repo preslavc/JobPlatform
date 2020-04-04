@@ -1,7 +1,7 @@
-﻿@model JobPlatform.Web.ViewModels.Shared.SearchPartialViewModel
+﻿@model JobPlatform.Web.ViewModels.Browse.SearchPartialViewModel
 
 <div class="d-flex justify-content-center">
-    <form class="form-inline md-1" asp-controller="Home" asp-action="Search" asp-route-keyword="@Model.Keyword" asp-route-city="@Model.City" method="get">
+    <form class="form-inline md-1" asp-controller="Browse" asp-action="Search" asp-route-keyword="@Model.Keyword" asp-route-city="@Model.City" method="get">
         <div class="form-group mb-2">
             <input asp-for=@Model.Keyword class="form-control" />
             <span asp-validation-for=@Model.Keyword class="text-danger"></span>

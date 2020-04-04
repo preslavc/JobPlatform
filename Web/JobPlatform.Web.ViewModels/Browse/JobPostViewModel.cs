@@ -1,10 +1,11 @@
-﻿namespace JobPlatform.Web.ViewModels.Shared
+﻿namespace JobPlatform.Web.ViewModels.Browse
 {
     using System;
     using System.Collections.Generic;
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
+    using JobPlatform.Web.ViewModels.Jobs;
 
     public class JobPostViewModel : IMapFrom<JobPost>
     {
@@ -20,6 +21,6 @@
 
         public Employer Employer { get; set; }
 
-        public IEnumerable<JobTag> Tags { get; set; }
+        public IEnumerable<TagViewModel> Tags { get; set; }
     }
 }

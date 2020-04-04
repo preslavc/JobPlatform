@@ -6,8 +6,8 @@
     using JobPlatform.Common;
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels;
+    using JobPlatform.Web.ViewModels.Browse;
     using JobPlatform.Web.ViewModels.Home;
-    using JobPlatform.Web.ViewModels.Shared;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -19,41 +19,14 @@
             this.jobPostsService = jobPostsService;
         }
 
-        // public IActionResult Index()
-        // {
-        //     IndexViewModel viewModel = new IndexViewModel
-        //     {
-        //         JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
-        //     };
-        //     return this.View(viewModel);
-        // }
-        [Route("/")]
-        [Route("Home/Index/")]
-        [Route("Home/Index/{page}")]
-        public IActionResult Index(int? page)
+        public IActionResult Index()
         {
-            if (!page.HasValue)
-            {
-                page = 1;
-            }
-
             IndexViewModel viewModel = new IndexViewModel();
             viewModel.JobsDisplayViewModel = new JobsDisplayViewModel()
             {
-                JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(page),
+                JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
                 PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage),
-                CurrentPage = (int)page,
-            };
-
-            return this.View(viewModel);
-        }
-
-        public IActionResult Search(string keyword, string city)
-        {
-            IndexViewModel viewModel = new IndexViewModel();
-            viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
-            {
-                JobPosts = this.jobPostsService.GetAllBy<JobPostViewModel>(keyword, city),
+                CurrentPage = 1,
             };
             return this.View(viewModel);
         }

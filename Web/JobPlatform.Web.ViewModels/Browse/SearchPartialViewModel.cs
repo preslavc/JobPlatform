@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.ViewModels.Shared
+﻿namespace JobPlatform.Web.ViewModels.Browse
 {
     using System.ComponentModel.DataAnnotations;
 
