@@ -43,4 +43,8 @@
     <ProjectReference Include="..\JobPlatform.Web.Infrastructure\JobPlatform.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\JobPlatform.Web.ViewModels\JobPlatform.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Employer\Controllers\" />
+  </ItemGroup>
 </Project>

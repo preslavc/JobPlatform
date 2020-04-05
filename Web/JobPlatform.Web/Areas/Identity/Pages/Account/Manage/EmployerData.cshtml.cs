@@ -9,6 +9,7 @@ using JobPlatform.Common;
 using JobPlatform.Data.Models;
 using JobPlatform.Services.Data;
 using JobPlatform.Services.Mapping;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -55,12 +56,14 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "Описание")]
             public string Description { get; set; }
+
+            [Display(Name = "Картинка")]
+            public IFormFile Image { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             Employer employer = this.employerService.GetById((int)user.EmployerId);
-
             Eik = employer.Eik;
             EmployerName = employer.Name;
 
@@ -99,7 +102,7 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-            await this.employerService.EditAsync((int)user.EmployerId, Input.City, Input.Country, Input.Description);
+            await this.employerService.EditAsync((int)user.EmployerId, Input.City, Input.Country, Input.Description, Input.Image);
 
             await this.signInManager.RefreshSignInAsync(user);
 

@@ -1,7 +1,9 @@
 ﻿namespace JobPlatform.Services.Data
 {
-    using JobPlatform.Data.Models;
     using System.Threading.Tasks;
+
+    using JobPlatform.Data.Models;
+    using Microsoft.AspNetCore.Http;
 
     public interface IEmployerService
     {
@@ -9,6 +11,6 @@
 
         T GetById<T>(int id);
 
-        Task EditAsync(int id, string city, string country, string description);
+        Task EditAsync(int id, string city, string country, string description, IFormFile image);
     }
 }

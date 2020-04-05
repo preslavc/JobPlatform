@@ -19,5 +19,9 @@
         public const string ErrorMessageInvalidEik = "ЕИК/БУЛСТАТ не е валиден!";
 
         public const int ItemsPerPage = 12;
+
+        public const string DropBoxImageUrl = "/Images/";
+
+        public const string DefaultEmployerImage = @"https://www.dropbox.com/s/kawjasv0sillz8q/default-user-150x150.png?raw=1";
     }
 }

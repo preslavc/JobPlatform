@@ -8,6 +8,7 @@
     using JobPlatform.Data.Models;
     using JobPlatform.Data.Repositories;
     using JobPlatform.Data.Seeding;
+    using JobPlatform.Services;
     using JobPlatform.Services.Data;
     using JobPlatform.Services.Mapping;
     using JobPlatform.Services.Messaging;
@@ -66,6 +67,8 @@
             services.AddTransient<IJobPostsService, JobPostsService>();
             services.AddTransient<IEmployerService, EmployerService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IStringManipulationService, StringManipulationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

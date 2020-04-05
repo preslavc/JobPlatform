@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dropbox.Api" Version="4.9.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -23,6 +25,7 @@
     <ProjectReference Include="..\..\Data\JobPlatform.Data.Models\JobPlatform.Data.Models.csproj" />
     <ProjectReference Include="..\..\JobPlatform.Common\JobPlatform.Common.csproj" />
     <ProjectReference Include="..\JobPlatform.Services.Mapping\JobPlatform.Services.Mapping.csproj" />
+    <ProjectReference Include="..\JobPlatform.Services\JobPlatform.Services.csproj" />
   </ItemGroup>
 
 </Project>
