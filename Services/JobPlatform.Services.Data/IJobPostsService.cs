@@ -26,5 +26,7 @@
         IEnumerable<T> GetAllByTag<T>(string keyword);
 
         bool JobPostExist(int jobPostId);
+
+        IEnumerable<T> GetAllByEmployer<T>(string name);
     }
 }

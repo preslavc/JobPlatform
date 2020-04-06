@@ -1,6 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.Employers
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using Ganss.XSS;
     using JobPlatform.Data.Models;
@@ -18,5 +19,10 @@
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
         public ICollection<JobPostViewModel> JobPosts { get; set; }
+
+        public IEnumerable<JobPostViewModel> JobPostsOrderByDescending
+        {
+            get => this.JobPosts.OrderByDescending(x => x.CreatedOn);
+        }
     }
 }

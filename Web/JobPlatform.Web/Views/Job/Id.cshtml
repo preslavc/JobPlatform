@@ -39,7 +39,7 @@
                 <h6>Тагове</h6>
                 @foreach (var tag in Model.Tags)
                 {
-                    <a class="badge badge-secondary" asp-controller="Browse" asp-action="JobsByTag" asp-route-tag="@tag.Name">@tag.Name</a>
+                    <a class="badge badge-secondary" asp-controller="Browse" asp-action="ByTag" asp-route-tag="@tag.Name">@tag.Name</a>
                 }
             }
         </div>

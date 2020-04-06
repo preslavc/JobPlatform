@@ -5,23 +5,19 @@
 
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
-    using JobPlatform.Services;
     using JobPlatform.Services.Mapping;
     using Microsoft.AspNetCore.Http;
 
     public class EmployerService : IEmployerService
     {
         private readonly IDeletableEntityRepository<Employer> employerRepository;
-        private readonly IStringManipulationService stringManipulationService;
         private readonly IFileUploadService imageService;
 
         public EmployerService(
             IDeletableEntityRepository<Employer> employerRepository,
-            IStringManipulationService stringManipulationService,
             IFileUploadService imageService)
         {
             this.employerRepository = employerRepository;
-            this.stringManipulationService = stringManipulationService;
             this.imageService = imageService;
         }
 

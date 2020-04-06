@@ -91,6 +91,14 @@
             return query.To<T>().ToList();
         }
 
+        public IEnumerable<T> GetAllByEmployer<T>(string name)
+        {
+            IQueryable<JobPost> query = this.jobPostsRepository.All()
+                .Where(x => x.Employer.Name == name)
+                .OrderByDescending(x => x.CreatedOn);
+            return query.To<T>().ToList();
+        }
+
         public IEnumerable<T> GetAllByTag<T>(string keyword)
         {
             IQueryable<JobPost> query = this.jobPostsRepository.All()

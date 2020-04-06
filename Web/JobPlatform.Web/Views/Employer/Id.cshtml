@@ -12,24 +12,28 @@
         <img class="img-fluid" src="@Model.ImageUrl" alt="">
         <hr />
         <div>
-            <h5>Всички обяви на @Model.Name</h5>
+            <h5>Обяви на @Model.Name</h5>
             <hr />
-            @foreach (var job in Model.JobPosts)
-            {
-                <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
-                    <div class="text-body">
-                        <h6 class="job-card_title">@job.Title</h6>
-                        <h7 class="job-card_location">@job.City, @job.Country</h7>
-                        <p class="job-card_listed-status">@job.CreatedOn</p>
-                    </div>
-                </a>
-                @foreach (var tag in job.Tags)
+            @{
+                int i = 0;
+                foreach (var job in Model.JobPostsOrderByDescending)
                 {
-                    <a class="badge badge-secondary" asp-controller="Browse" asp-action="JobsByTag" asp-route-tag="@tag.Name">@tag.Name</a>
+                    if (i >= 5) break;
+                    <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
+                        <div class="text-body">
+                            <h6 class="job-card_title">@job.Title</h6>
+                            <h7 class="job-card_location">@job.City, @job.Country</h7>
+                            <p class="job-card_listed-status">@job.CreatedOn</p>
+                        </div>
+                    </a>
+                    @foreach (var tag in job.Tags)
+                    {
+                        <a class="badge badge-secondary" asp-controller="Browse" asp-action="ByTag" asp-route-tag="@tag.Name">@tag.Name</a>
+                    }
+                    <hr />
+                    i++;
                 }
-                <hr />
             }
-
         </div>
     </aside>
 </div>

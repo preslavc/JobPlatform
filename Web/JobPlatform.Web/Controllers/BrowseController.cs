@@ -47,9 +47,9 @@
             return this.View(viewModel);
         }
 
-        [Route("Browse/JobsByTag/")]
-        [Route("Browse/JobsByTag/{tag}")]
-        public IActionResult JobsByTag(string tag)
+        [Route("Browse/ByTag/")]
+        [Route("Browse/ByTag/{tag}")]
+        public IActionResult ByTag(string tag)
         {
             if (tag == null || tag == string.Empty)
             {
@@ -65,6 +65,28 @@
             viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
             {
                 JobPosts = this.jobPostsService.GetAllByTag<JobPostViewModel>(tag),
+            };
+
+            return this.View(viewModel);
+        }
+
+        [Route("Browse/ByEmployer/")]
+        [Route("Browse/ByEmployer/{name}")]
+        public IActionResult ByEmployer(string name)
+        {
+            if (name == null || name == string.Empty)
+            {
+                return this.Redirect("/Browse/Jobs/");
+            }
+
+            BrowseViewModel viewModel = new BrowseViewModel()
+            {
+                Name = name,
+            };
+
+            viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
+            {
+                JobPosts = this.jobPostsService.GetAllByEmployer<JobPostViewModel>(name),
             };
 
             return this.View(viewModel);

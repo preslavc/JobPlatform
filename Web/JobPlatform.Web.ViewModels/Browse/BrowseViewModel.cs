@@ -7,6 +7,8 @@
             this.SearchPartialViewModel = new SearchPartialViewModel();
         }
 
+        public string Name { get; set; }
+
         public SearchPartialViewModel SearchPartialViewModel { get; set; }
 
         public JobsDisplayViewModel JobsDisplayViewModel { get; set; }
