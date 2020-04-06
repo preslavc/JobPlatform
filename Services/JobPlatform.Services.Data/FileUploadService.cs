@@ -14,12 +14,12 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
 
-    public class ImageService : IImageService
+    public class FileUploadService : IFileUploadService
     {
         private readonly IConfiguration configuration;
         private readonly IStringManipulationService stringManipulationService;
 
-        public ImageService(
+        public FileUploadService(
             IConfiguration configuration,
             IStringManipulationService stringManipulationService)
         {
@@ -27,9 +27,22 @@
             this.stringManipulationService = stringManipulationService;
         }
 
-        public async Task<string> UploadImage(IFormFile file, string employer)
+        public async Task<string> UploadCvAsync(IFormFile file, string user)
+        {
+            string path = GlobalConstants.DropBoxCvUrl + user + DateTime.Now.ToString("yyyyMMddhhmmss") + ".pdf";
+            string url = await this.FileUpload(file, path);
+            return this.stringManipulationService.CreateDropBoxCvUrl(url);
+        }
+
+        public async Task<string> UploadImageAsync(IFormFile file, string employer)
         {
             string path = GlobalConstants.DropBoxImageUrl + employer + ".png";
+            string url = await this.FileUpload(file, path);
+            return this.stringManipulationService.CreateDropBoxImageUrl(url);
+        }
+
+        private async Task<string> FileUpload(IFormFile file, string path)
+        {
             using (var dbx = new DropboxClient(this.configuration["DropBox:ApiKey"]))
             {
                 using (var memoryStream = new MemoryStream())
@@ -61,7 +74,7 @@
                     }
                 }
 
-                return this.stringManipulationService.CreateDropBoxImageUrl(sharedLinkMetadata.Url);
+                return sharedLinkMetadata.Url;
             }
         }
     }

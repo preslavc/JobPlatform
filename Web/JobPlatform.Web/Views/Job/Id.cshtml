@@ -18,7 +18,7 @@
         </div>
         <br />
         <div class="text-center">
-            <input type="submit" value="Кандидатствай" class="btn btn-primary" />
+            <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary" >Кандидатствай</a>
         </div>
     </div>
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">

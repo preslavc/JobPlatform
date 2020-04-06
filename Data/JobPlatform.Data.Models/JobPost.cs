@@ -9,6 +9,7 @@
         public JobPost()
         {
             this.Tags = new HashSet<JobTag>();
+            this.CvMessages = new HashSet<CvMessage>();
         }
 
         public string Title { get; set; }
@@ -24,5 +25,7 @@
         public virtual Employer Employer { get; set; }
 
         public virtual ICollection<JobTag> Tags { get; set; }
+
+        public virtual ICollection<CvMessage> CvMessages { get; set; }
     }
 }

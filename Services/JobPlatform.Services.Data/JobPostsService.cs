@@ -117,5 +117,16 @@
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
         }
+
+        public bool JobPostExist(int jobPostId)
+        {
+            JobPost jobPost = this.GetJobPost(jobPostId);
+            if (jobPost == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

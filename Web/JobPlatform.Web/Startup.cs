@@ -67,8 +67,9 @@
             services.AddTransient<IJobPostsService, JobPostsService>();
             services.AddTransient<IEmployerService, EmployerService>();
             services.AddTransient<ITagService, TagService>();
-            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IFileUploadService, FileUploadService>();
             services.AddTransient<IStringManipulationService, StringManipulationService>();
+            services.AddTransient<ICvMessageService, CvMessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

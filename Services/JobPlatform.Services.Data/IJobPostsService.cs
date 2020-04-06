@@ -24,5 +24,7 @@
         IEnumerable<T> GetAllBy<T>(string keyword, string city, int? count = null);
 
         IEnumerable<T> GetAllByTag<T>(string keyword);
+
+        bool JobPostExist(int jobPostId);
     }
 }

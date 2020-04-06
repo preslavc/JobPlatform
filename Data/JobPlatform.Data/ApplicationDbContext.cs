@@ -34,6 +34,8 @@
 
         public DbSet<JobTag> JobTags { get; set; }
 
+        public DbSet<CvMessage> CvMessages { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

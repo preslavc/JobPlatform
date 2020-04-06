@@ -13,12 +13,12 @@
     {
         private readonly IDeletableEntityRepository<Employer> employerRepository;
         private readonly IStringManipulationService stringManipulationService;
-        private readonly IImageService imageService;
+        private readonly IFileUploadService imageService;
 
         public EmployerService(
             IDeletableEntityRepository<Employer> employerRepository,
             IStringManipulationService stringManipulationService,
-            IImageService imageService)
+            IFileUploadService imageService)
         {
             this.employerRepository = employerRepository;
             this.stringManipulationService = stringManipulationService;
@@ -48,7 +48,7 @@
             employer.Description = description;
             if (image != null)
             {
-                employer.ImageUrl = await this.imageService.UploadImage(image, employer.Name);
+                employer.ImageUrl = await this.imageService.UploadImageAsync(image, employer.Name);
             }
 
             this.employerRepository.Update(employer);
