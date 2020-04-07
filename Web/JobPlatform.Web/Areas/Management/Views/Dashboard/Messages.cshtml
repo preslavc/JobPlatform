@@ -1,0 +1,18 @@
+﻿@model JobPlatform.Web.ViewModels.Management.Messages.JobApplyViewModel
+@{
+    this.ViewData["Title"] = "Съобщения";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<h5>Събощения за обява: @Model.Title</h5>
+<hr />
+@foreach (var messages in Model.CvMessages)
+{
+        <div class="text-body">
+            <h6 class="job-card_title">@messages.FirstName @messages.LastName</h6>
+            <h7 class="job-card_location">@messages.ShortMessage</h7>
+            <p class="job-card_listed-status">@messages.CvUrl</p>
+        </div>
+    <hr />
+}

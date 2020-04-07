@@ -1,5 +1,6 @@
 ﻿namespace JobPlatform.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -49,6 +50,12 @@
 
             this.employerRepository.Update(employer);
             await this.employerRepository.SaveChangesAsync();
+        }
+
+        public bool ContaintPost(int postId, int employerId)
+        {
+            Employer employer = this.GetById(employerId);
+            return employer.JobPosts.Any(x => x.Id == postId);
         }
     }
 }

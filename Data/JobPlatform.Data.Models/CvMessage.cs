@@ -15,5 +15,9 @@
         public string CvUrl { get; set; }
 
         public string Message { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

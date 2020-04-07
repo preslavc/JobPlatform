@@ -14,6 +14,13 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Employer\**" />
+    <Content Remove="Areas\Employer\**" />
+    <EmbeddedResource Remove="Areas\Employer\**" />
+    <None Remove="Areas\Employer\**" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
@@ -42,9 +49,5 @@
     <ProjectReference Include="..\..\Services\JobPlatform.Services\JobPlatform.Services.csproj" />
     <ProjectReference Include="..\JobPlatform.Web.Infrastructure\JobPlatform.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\JobPlatform.Web.ViewModels\JobPlatform.Web.ViewModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Employer\Controllers\" />
   </ItemGroup>
 </Project>

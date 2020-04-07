@@ -59,7 +59,9 @@
                 user,
                 createCvViewModel.PostId,
                 createCvViewModel.Message,
-                createCvViewModel.CvFile);
+                createCvViewModel.CvFile,
+                createCvViewModel.FirstName,
+                createCvViewModel.LastName);
             return this.Redirect("/Browse/Jobs/");
         }
     }
