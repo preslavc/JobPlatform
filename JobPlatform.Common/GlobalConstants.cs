@@ -18,6 +18,8 @@
 
         public const string ErrorMessageInvalidEik = "ЕИК/БУЛСТАТ не е валиден!";
 
+        public const string ErrorMaxTags = "Позволено е максимално 5 тага";
+
         public const int ItemsPerPage = 12;
 
         public const string DropBoxImageUrl = "/Images/";

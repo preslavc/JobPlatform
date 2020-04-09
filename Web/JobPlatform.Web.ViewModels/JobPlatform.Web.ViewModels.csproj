@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\Data\JobPlatform.Data.Models\JobPlatform.Data.Models.csproj" />
     <ProjectReference Include="..\..\JobPlatform.Common\JobPlatform.Common.csproj" />
     <ProjectReference Include="..\..\Services\JobPlatform.Services.Mapping\JobPlatform.Services.Mapping.csproj" />
+    <ProjectReference Include="..\JobPlatform.Web.Infrastructure\JobPlatform.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

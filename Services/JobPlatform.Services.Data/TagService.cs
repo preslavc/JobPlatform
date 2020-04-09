@@ -44,6 +44,34 @@
             return;
         }
 
+        public async Task UpdateTagAsync(int jobPostId, string tagNames)
+        {
+            var jobTags = this.jobTagRepository.All().Where(x => x.JobPostId == jobPostId);
+            if (jobTags.Count() > 0)
+            {
+                foreach (var jobTag in jobTags)
+                {
+                    this.jobTagRepository.Delete(jobTag);
+                }
+
+                await this.jobTagRepository.SaveChangesAsync();
+            }
+
+            await this.AddAsync(jobPostId, tagNames);
+        }
+
+        public string GetTagToString(int jobId)
+        {
+            var tagsFromJob = this.tagRepository.All().Where(x => x.JobPosts.Any(x => x.JobPostId == jobId)).ToArray();
+            string tags = string.Empty;
+            foreach (var tag in tagsFromJob)
+            {
+                tags += tag.Name + " ";
+            }
+
+            return tags;
+        }
+
         private async Task<Tag> GetOrCreateAsync(string name)
         {
             Tag tag = this.tagRepository.All()
@@ -51,7 +79,10 @@
                 .FirstOrDefault();
             if (tag == null)
             {
-                tag.Name = name;
+                tag = new Tag
+                {
+                    Name = name,
+                };
                 await this.tagRepository.AddAsync(tag);
                 await this.tagRepository.SaveChangesAsync();
             }

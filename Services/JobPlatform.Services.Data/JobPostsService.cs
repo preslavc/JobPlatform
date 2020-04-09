@@ -50,7 +50,7 @@
             return;
         }
 
-        public async Task EditAsync(int id, string title, string description, string city, string country)
+        public async Task EditAsync(int id, string title, string description, string city, string country, string tags)
         {
             JobPost jobPost = this.GetJobPost(id);
             jobPost.Title = title;
@@ -60,6 +60,7 @@
 
             this.jobPostsRepository.Update(jobPost);
             await this.jobPostsRepository.SaveChangesAsync();
+            await this.tagService.UpdateTagAsync(id, tags);
         }
 
         public IEnumerable<T> GetAll<T>(int? page = null)

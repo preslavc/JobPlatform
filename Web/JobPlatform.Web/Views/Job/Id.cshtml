@@ -4,21 +4,26 @@
 
 <div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
-        <div>
-            <h2 class="my-3">@Model.Title</h2>
-            @if (Model.EditPermission)
-            {
-                <div>
-                    <a asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">[Редактирай]</a>
-                    <a class="btn-link" data-toggle="modal" data-target="#dialogBox">[Изтрий]</a>
-                </div>
-            }
-
-            @Html.Raw(Model.SanitizedDescription)
-        </div>
+        <h5 class="my-3">@Model.Title</h5>
+        @if (Model.EditPermission)
+        {
+            <div class="btn-group">
+                <a class=" btn btn-outline-secondary" asp-controller="Job" asp-action="Edit" asp-route-id="@Model.Id">
+                    <i class="fas fa-edit">
+                        <span>Edit</span>
+                    </i>
+                </a>
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogBox">
+                    <i class="fa fa-times">
+                        <span>Delete</span>
+                    </i>
+                </button>
+            </div>
+        }
+        @Html.Raw(Model.SanitizedDescription)
         <br />
         <div class="text-center">
-            <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary" >Кандидатствай</a>
+            <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary">Кандидатствай</a>
         </div>
     </div>
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">

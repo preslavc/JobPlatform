@@ -18,7 +18,11 @@
                 int i = 0;
                 foreach (var job in Model.JobPostsOrderByDescending)
                 {
-                    if (i >= 5) break;
+                    if (i >= 5)
+                    {
+                        <a class="btn btn-primary" asp-controller="Browse" asp-action="ByEmployer" asp-route-name="@Model.Name">Всички обяви</a>
+                        break;
+                    }
                     <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
                         <div class="text-body">
                             <h6 class="job-card_title">@job.Title</h6>

@@ -84,6 +84,8 @@
                 return this.Unauthorized();
             }
 
+            viewModel.TagString = this.tagService.GetTagToString(id);
+
             return this.View(viewModel);
         }
 
@@ -96,7 +98,7 @@
                 return this.View(editViewModel);
             }
 
-            await this.jobPostsService.EditAsync(editViewModel.Id, editViewModel.Title, editViewModel.Description, editViewModel.City, editViewModel.Country);
+            await this.jobPostsService.EditAsync(editViewModel.Id, editViewModel.Title, editViewModel.Description, editViewModel.City, editViewModel.Country, editViewModel.TagString);
             return this.RedirectToAction(nameof(this.Id), new { id = editViewModel.Id });
         }
 

@@ -1,9 +1,11 @@
 ﻿namespace JobPlatform.Web.ViewModels.Jobs
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
+    using JobPlatform.Web.Infrastructure.ValidationAttributes;
 
     public class EditViewModel : IMapFrom<JobPost>
     {
@@ -29,5 +31,10 @@
         public string City { get; set; }
 
         public int EmployerId { get; set; }
+
+        [Display(Name = "Тагове")]
+        [TagValidation]
+        [MaxLength(100)]
+        public string TagString { get; set; }
     }
 }

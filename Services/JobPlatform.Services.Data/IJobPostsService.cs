@@ -9,7 +9,7 @@
     {
         Task<int> CreateAsync(string title, string description, string city, string country, int employerId, string tags);
 
-        Task EditAsync(int id, string title, string description, string city, string country);
+        Task EditAsync(int id, string title, string description, string city, string country, string tags);
 
         Task DeleteAsync(JobPost jobPost);
 
