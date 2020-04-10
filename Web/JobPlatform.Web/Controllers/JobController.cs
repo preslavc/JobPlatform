@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using JobPlatform.Data.Models;
+    using JobPlatform.Services;
     using JobPlatform.Services.Data;
     using JobPlatform.Web.Infrastructure.Attributes;
     using JobPlatform.Web.ViewModels.Jobs;
@@ -15,15 +16,18 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IJobPostsService jobPostsService;
         private readonly ITagService tagService;
+        private readonly ISlugService slugService;
 
         public JobController(
             UserManager<ApplicationUser> userManager,
             IJobPostsService jobPostsService,
-            ITagService tagService)
+            ITagService tagService,
+            ISlugService slugService)
         {
             this.userManager = userManager;
             this.jobPostsService = jobPostsService;
             this.tagService = tagService;
+            this.slugService = slugService;
         }
 
         [AuthorizeRoles(Common.GlobalConstants.AdministratorRoleName, Common.GlobalConstants.EmployerRoleName)]
@@ -56,14 +60,9 @@
         public async Task<IActionResult> Delete(int id)
         {
             JobPost jobPost = this.jobPostsService.GetJobPost(id);
-            if (jobPost == null)
+            if (jobPost == null || !await this.UserPermission(jobPost.EmployerId))
             {
                 return this.NotFound();
-            }
-
-            if (!await this.UserPermission(jobPost.EmployerId))
-            {
-                return this.Unauthorized();
             }
 
             await this.jobPostsService.DeleteAsync(jobPost);
@@ -74,14 +73,9 @@
         public async Task<IActionResult> Edit(int id)
         {
             EditViewModel viewModel = this.jobPostsService.GetById<EditViewModel>(id);
-            if (viewModel == null)
+            if (viewModel == null || !await this.UserPermission(viewModel.EmployerId))
             {
                 return this.NotFound();
-            }
-
-            if (!await this.UserPermission(viewModel.EmployerId))
-            {
-                return this.Unauthorized();
             }
 
             viewModel.TagString = this.tagService.GetTagToString(id);
@@ -103,7 +97,7 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> Id(int id)
+        public async Task<IActionResult> Id(int id, string slug)
         {
             DetailsViewModel viewModel = this.jobPostsService.GetById<DetailsViewModel>(id);
             if (viewModel == null)

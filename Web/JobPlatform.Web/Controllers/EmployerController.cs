@@ -15,7 +15,7 @@
         }
 
         [Authorize]
-        public IActionResult Id(int id)
+        public IActionResult Id(int id, string slug)
         {
             EmployerDetailsViewModel viewModel = this.employerService.GetById<EmployerDetailsViewModel>(id);
             if (viewModel == null)

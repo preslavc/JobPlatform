@@ -17,9 +17,9 @@
             this.jobPostsService = jobPostsService;
         }
 
-        [Route("Browse/Jobs/")]
-        [Route("Browse/Jobs/{page}")]
-        public IActionResult Jobs(int? page)
+        // [Route("Browse/Jobs/")]
+        // [Route("Browse/Jobs/{page}")]
+        public IActionResult Jobs([FromQuery]int? page)
         {
             if (!page.HasValue)
             {
@@ -37,7 +37,7 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Search(string keyword, string city)
+        public IActionResult Search([FromQuery]string keyword, string city)
         {
             BrowseViewModel viewModel = new BrowseViewModel();
             viewModel.JobsDisplayViewModel = new JobsDisplayViewModel
@@ -47,8 +47,8 @@
             return this.View(viewModel);
         }
 
-        [Route("Browse/ByTag/")]
-        [Route("Browse/ByTag/{tag}")]
+        // [Route("Browse/ByTag/")]
+        // [Route("Browse/ByTag/{tag}")]
         public IActionResult ByTag(string tag)
         {
             if (tag == null || tag == string.Empty)
@@ -70,9 +70,9 @@
             return this.View(viewModel);
         }
 
-        [Route("Browse/ByEmployer/")]
-        [Route("Browse/ByEmployer/{name}")]
-        public IActionResult ByEmployer(string name)
+        // [Route("Browse/ByEmployer/")]
+        // [Route("Browse/ByEmployer/{name}")]
+        public IActionResult ByEmployer([FromQuery]string name)
         {
             if (name == null || name == string.Empty)
             {

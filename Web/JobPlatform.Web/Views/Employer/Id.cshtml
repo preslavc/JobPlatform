@@ -1,4 +1,4 @@
-﻿
+﻿@inject JobPlatform.Services.ISlugService SlugService
 @{
     ViewData["Title"] = $"{Model.Name} profile";
 }
@@ -23,7 +23,7 @@
                         <a class="btn btn-primary" asp-controller="Browse" asp-action="ByEmployer" asp-route-name="@Model.Name">More job posts</a>
                         break;
                     }
-                    <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">
+                    <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id" asp-route-slug="@SlugService.ConvertSlug(job.Title)">
                         <div class="text-body">
                             <h6 class="job-card_title">@job.Title</h6>
                             <h7 class="job-card_location">@job.City, @job.Country</h7>

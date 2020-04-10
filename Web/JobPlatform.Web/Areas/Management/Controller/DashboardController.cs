@@ -40,9 +40,9 @@
             return this.View(viewModel);
         }
 
-        [Route("Management/Messages/")]
-        [Route("Management/Messages/{postId}")]
-        public async Task<IActionResult> Messages(int postId)
+        //[Route("Management/Messages/")]
+        //[Route("Management/Messages/{postId}")]
+        public async Task<IActionResult> Messages([FromQuery]int postId)
         {
             ApplicationUser user = await this.userManager.GetUserAsync(this.User);
             JobApplyViewModel viewModel = this.jobPostsService.GetById<JobApplyViewModel>(postId);

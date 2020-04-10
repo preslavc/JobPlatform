@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject JobPlatform.Services.ISlugService SlugService
+@{
     ViewData["Title"] = $"{Model.Title}";
 }
 
@@ -30,7 +31,7 @@
         <img class="img-fluid" src="@Model.Employer.ImageUrl" alt="">
         <p class="form-text">
 
-            <a asp-controller="Employer" asp-action="Id" asp-route-id="@Model.Employer.Id">
+            <a asp-controller="Employer" asp-action="Id" asp-route-id="@Model.Employer.Id" asp-route-slug="@SlugService.ConvertSlug(Model.Employer.Name)">
                 @Model.Employer.Name
             </a>
             <br>

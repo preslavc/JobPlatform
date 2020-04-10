@@ -70,6 +70,7 @@
             services.AddTransient<IFileUploadService, FileUploadService>();
             services.AddTransient<IStringManipulationService, StringManipulationService>();
             services.AddTransient<ICvMessageService, CvMessageService>();
+            services.AddTransient<ISlugService, SlugService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -115,8 +116,32 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-                        endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                        endpoints.MapControllerRoute(
+                            "tagged",
+                            "Browse/Tagged/{tag:required}",
+                            new { controller = "Browse", action = "ByTag", });
+                        endpoints.MapControllerRoute(
+                            "employerDetails",
+                            "Employer/{id:int:min(1)}/{slug:required}",
+                            new { controller = "Employer", action = "Id", });
+                        endpoints.MapControllerRoute(
+                            "employerDetails",
+                            "Employer/{id:int:min(1)}",
+                            new { controller = "Employer", action = "Id", });
+                        endpoints.MapControllerRoute(
+                            "jobDetails",
+                            "Job/{id:int:min(1)}/{slug:required}",
+                            new { controller = "Job", action = "Id", });
+                        endpoints.MapControllerRoute(
+                            "jobDetails",
+                            "Job/{id:int:min(1)}",
+                            new { controller = "Job", action = "Id", });
+                        endpoints.MapControllerRoute(
+                            "areaRoute",
+                            "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                        endpoints.MapControllerRoute(
+                            "default",
+                            "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
         }
