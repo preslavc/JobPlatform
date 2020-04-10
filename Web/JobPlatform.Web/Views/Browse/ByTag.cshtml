@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "Tagged";
+    ViewData["Title"] = $"Jobs tagged with \"{Model.Name}\"";
 }
 
-<h1> Обяви маркирани с @Model.Name</h1>
+<h1> @ViewData["Title"]</h1>
 
 <partial name="_JobBrowsePartial" model="@Model.JobsDisplayViewModel" />

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"{Model.Title}";
 }
 
 <div class="row">
@@ -23,7 +23,7 @@
         @Html.Raw(Model.SanitizedDescription)
         <br />
         <div class="text-center">
-            <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary">Кандидатствай</a>
+            <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary">Apply for job</a>
         </div>
     </div>
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">
@@ -41,7 +41,7 @@
         <div>
             @if (Model.Tags.Count != 0)
             {
-                <h6>Тагове</h6>
+                <h6>Tags</h6>
                 @foreach (var tag in Model.Tags)
                 {
                     <a class="badge badge-secondary" asp-controller="Browse" asp-action="ByTag" asp-route-tag="@tag.Name">@tag.Name</a>
@@ -55,16 +55,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h7 class="modal-title" id="dialogBoxLongTitle">Сигурни ли сте, че желаете да изтриете обявата?</h7>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Отказ">
+                <h7 class="modal-title" id="dialogBoxLongTitle">Are you sure to delete this post?</h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <h5 class="text-danger">"@Model.Title"</h5>
                 <form asp-controller="Job" asp-action="Delete" asp-route-id="@Model.Id">
-                    <button type="button" class="btn btn-secondary align-left" data-dismiss="modal">Отказ</button>
-                    <button type="submit" class="btn btn-primary">Изтриване</button>
+                    <button type="button" class="btn btn-secondary align-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>

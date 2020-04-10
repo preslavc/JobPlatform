@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using JobPlatform.Common;
 using JobPlatform.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,16 +35,16 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Име")]
+            [StringLength(50, MinimumLength = 3)]
+            [Display(Name = DisplayNameConstants.FirstName)]
             public string FirstName { get; set; }
 
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Фамилия")]
+            [StringLength(50, MinimumLength = 3)]
+            [Display(Name = DisplayNameConstants.LastName)]
             public string LastName { get; set; }
 
             [Phone]
-            [Display(Name = "Телефонен номер")]
+            [Display(Name = DisplayNameConstants.PhoneNumber)]
             public string PhoneNumber { get; set; }
         }
 

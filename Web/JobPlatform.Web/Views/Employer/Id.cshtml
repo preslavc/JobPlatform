@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"{Model.Name} profile";
 }
 
 <div class="row">
@@ -12,7 +12,7 @@
         <img class="img-fluid" src="@Model.ImageUrl" alt="">
         <hr />
         <div>
-            <h5>Обяви на @Model.Name</h5>
+            <h5>Job posts from @Model.Name</h5>
             <hr />
             @{
                 int i = 0;
@@ -20,7 +20,7 @@
                 {
                     if (i >= 5)
                     {
-                        <a class="btn btn-primary" asp-controller="Browse" asp-action="ByEmployer" asp-route-name="@Model.Name">Всички обяви</a>
+                        <a class="btn btn-primary" asp-controller="Browse" asp-action="ByEmployer" asp-route-name="@Model.Name">More job posts</a>
                         break;
                     }
                     <a asp-controller="Job" asp-action="Id" asp-route-id="@job.Id">

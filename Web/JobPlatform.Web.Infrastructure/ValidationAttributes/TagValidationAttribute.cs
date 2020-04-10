@@ -20,7 +20,7 @@
 
                 if (tags.Length > 5)
                 {
-                    return new ValidationResult(GlobalConstants.ErrorMaxTags);
+                    return new ValidationResult(ErrorMessageConstants.ErrorMaxTags);
                 }
             }
 

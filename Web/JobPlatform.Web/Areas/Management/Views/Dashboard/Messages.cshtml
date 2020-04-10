@@ -1,11 +1,11 @@
 ﻿@model JobPlatform.Web.ViewModels.Management.Messages.JobApplyViewModel
 @{
-    this.ViewData["Title"] = "Съобщения";
+    this.ViewData["Title"] = "Messeges";
 }
 
 <h1>@this.ViewData["Title"]</h1>
 
-<h5>Събощения за обява: @Model.Title</h5>
+<h5>Messeges for: @Model.Title</h5>
 <hr />
 @foreach (var messages in Model.CvMessages)
 {

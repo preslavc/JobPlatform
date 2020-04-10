@@ -1,28 +1,27 @@
 ﻿namespace JobPlatform.Web.ViewModels.CvMessages
 {
     using System.ComponentModel.DataAnnotations;
-
+    using JobPlatform.Common;
     using Microsoft.AspNetCore.Http;
 
     public class CreateCvViewModel
     {
         public int PostId { get; set; }
 
-        [Display(Name = "Име")]
+        [Display(Name = DisplayNameConstants.FirstName)]
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
 
-        [Display(Name = "Фамилия")]
+        [Display(Name = DisplayNameConstants.LastName)]
         [Required]
         public string LastName { get; set; }
 
-        [Display(Name = "Имейл")]
         public string Email { get; set; }
 
-        [Display(Name = "Съобщение/Мотивационно писмо")]
         public string Message { get; set; }
 
+        [Display(Name = DisplayNameConstants.CvFile)]
         [Required]
         public IFormFile CvFile { get; set; }
     }

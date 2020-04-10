@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Title"] = $"Обяви на {Model.Name}";
+    ViewData["Title"] = $"Job posts from {Model.Name}";
 }
 
-<h1> Обяви на @Model.Name</h1>
+<h1> @ViewData["Title"]</h1>
 
 <partial name="_JobBrowsePartial" model="@Model.JobsDisplayViewModel" />

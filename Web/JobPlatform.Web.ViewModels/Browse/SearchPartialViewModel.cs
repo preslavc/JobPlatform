@@ -4,11 +4,11 @@
 
     public class SearchPartialViewModel
     {
-        [Display(Prompt = "Ключова дума")]
+        [Display(Prompt = "Keyword")]
         [MaxLength(50)]
         public string Keyword { get; set; }
 
-        [Display(Prompt = "Град")]
+        [Display(Prompt = "City")]
         [MaxLength(50)]
         public string City { get; set; }
     }

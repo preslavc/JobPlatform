@@ -11,16 +11,16 @@
         {
             if (value == null)
             {
-                return new ValidationResult(GlobalConstants.ErrorMessageInvalidEik);
+                return new ValidationResult(ErrorMessageConstants.ErrorMessageInvalidEik);
             }
 
             string eik = value.ToString();
             if (!Regex.IsMatch(eik, "^[0-9]{9}$"))
             {
-                return new ValidationResult(GlobalConstants.ErrorMessageInvalidEik);
+                return new ValidationResult(ErrorMessageConstants.ErrorMessageInvalidEik);
             }
 
-            return this.CalculateNineDigitEik(eik) ? ValidationResult.Success : new ValidationResult(GlobalConstants.ErrorMessageInvalidEik);
+            return this.CalculateNineDigitEik(eik) ? ValidationResult.Success : new ValidationResult(ErrorMessageConstants.ErrorMessageInvalidEik);
         }
 
         private bool CalculateNineDigitEik(string eik)

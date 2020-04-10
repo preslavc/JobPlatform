@@ -10,16 +10,6 @@
 
         public const string EmployerRoleName = "Employer";
 
-        public const string ErrorMessageRequiredField = "Моля въведете {0}";
-
-        public const string ErrorMessageEmailField = "Невалиден имейл адрес";
-
-        public const string ErrorMessagePhoneField = "Невалиден телефонен номер";
-
-        public const string ErrorMessageInvalidEik = "ЕИК/БУЛСТАТ не е валиден!";
-
-        public const string ErrorMaxTags = "Позволено е максимално 5 тага";
-
         public const int ItemsPerPage = 12;
 
         public const string DropBoxImageUrl = "/Images/";

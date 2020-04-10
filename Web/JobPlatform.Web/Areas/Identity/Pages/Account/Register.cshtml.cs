@@ -48,32 +48,30 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Име")]
+            [StringLength(50, MinimumLength = 3)]
+            [Display(Name = DisplayNameConstants.FirstName)]
             public string FirstName { get; set; }
 
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Фамилия")]
+            [StringLength(50, MinimumLength = 3)]
+            [Display(Name = DisplayNameConstants.LastName)]
             public string LastName { get; set; }
 
-            [Display(Name = "Телефон за връзка")]
+            [Display(Name = DisplayNameConstants.PhoneNumber)]
             [Phone]
             public string PhoneNumber { get; set; }
 
-            [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
-            [EmailAddress(ErrorMessage = GlobalConstants.ErrorMessageEmailField)]
-            [Display(Name = "Имейл адрес *")]
+            [Required]
+            [EmailAddress]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = GlobalConstants.ErrorMessageRequiredField)]
-            [MinLength(6, ErrorMessage = "Минималната дължина трябва да е {1} символа")]
-            [MaxLength(100, ErrorMessage = "Максимална дължина трябва да е {1} символа")]
+            [Required]
+            [MinLength(6)]
+            [MaxLength(100)]
             [DataType(DataType.Password)]
-            [Display(Name = "Парола *")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Потвърдете паролата *")]
+            [Display(Name = DisplayNameConstants.ConfirmPassword)]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }

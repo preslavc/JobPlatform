@@ -35,10 +35,10 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
-        [Display(Name = "ЕИК/БУЛСТАТ")]
+        [Display(Name = DisplayNameConstants.Eik)]
         public string Eik { get; set; }
 
-        [Display(Name = "Име на компанията")]
+        [Display(Name = DisplayNameConstants.EmployerName)]
         public string EmployerName { get; set; }
 
         [BindProperty]
@@ -46,18 +46,15 @@ namespace JobPlatform.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel : IMapFrom<Employer>
         {
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Град")]
+            [StringLength(50, MinimumLength = 3)]
             public string City { get; set; }
 
-            [StringLength(50, ErrorMessage = "{0} трябва да е с минимална дължина {2} или максимална {1} ", MinimumLength = 3)]
-            [Display(Name = "Държава")]
+            [StringLength(50, MinimumLength = 3)]
             public string Country { get; set; }
 
-            [Display(Name = "Описание")]
+            [Display(Name = DisplayNameConstants.EmployerDescription)]
             public string Description { get; set; }
 
-            [Display(Name = "Картинка")]
             public IFormFile Image { get; set; }
         }
 
