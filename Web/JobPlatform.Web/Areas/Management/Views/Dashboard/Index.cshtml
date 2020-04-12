@@ -4,7 +4,10 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-
+<br />
+<a class="btn btn-primary" asp-area="" asp-controller="Job" asp-action="Create">Create new job post</a>
+<br />
+<br />
 <h5>Active job posts: @Model.ActiveJobs</h5>
 <hr />
 @foreach (var job in Model.JobPosts)

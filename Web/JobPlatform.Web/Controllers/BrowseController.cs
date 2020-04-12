@@ -11,10 +11,14 @@
     public class BrowseController : BaseController
     {
         private readonly IJobPostsService jobPostsService;
+        private readonly IEmployerService employerService;
 
-        public BrowseController(IJobPostsService jobPostsService)
+        public BrowseController(
+            IJobPostsService jobPostsService,
+            IEmployerService employerService)
         {
             this.jobPostsService = jobPostsService;
+            this.employerService = employerService;
         }
 
         // [Route("Browse/Jobs/")]
@@ -31,6 +35,23 @@
             {
                 JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(page),
                 PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage),
+                CurrentPage = (int)page,
+            };
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult Employers([FromQuery]int? page)
+        {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            EmployersDisplayViewModel viewModel = new EmployersDisplayViewModel()
+            {
+                Employers = this.employerService.GetAll<EmployerViewModel>(page),
+                PagesCount = (int)Math.Ceiling(this.employerService.GetEmployerCount() / GlobalConstants.ItemsPerPage),
                 CurrentPage = (int)page,
             };
 

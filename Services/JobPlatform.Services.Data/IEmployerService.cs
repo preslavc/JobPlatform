@@ -12,8 +12,12 @@
 
         T GetById<T>(int id);
 
+        IEnumerable<T> GetAll<T>(int? page = null);
+
         Task EditAsync(int id, string city, string country, string description, IFormFile image);
 
         bool ContaintPost(int postId, int employerId);
+
+        double GetEmployerCount();
     }
 }

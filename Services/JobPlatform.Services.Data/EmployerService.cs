@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using JobPlatform.Common;
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
@@ -20,6 +20,21 @@
         {
             this.employerRepository = employerRepository;
             this.imageService = imageService;
+        }
+
+        public IEnumerable<T> GetAll<T>(int? page = null)
+        {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            IQueryable<Employer> query = this.employerRepository.All()
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
+
+            return query.To<T>().ToList();
         }
 
         public Employer GetById(int id)
@@ -56,6 +71,11 @@
         {
             Employer employer = this.GetById(employerId);
             return employer.JobPosts.Any(x => x.Id == postId);
+        }
+
+        public double GetEmployerCount()
+        {
+            return this.employerRepository.All().Count();
         }
     }
 }
