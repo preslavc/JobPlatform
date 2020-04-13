@@ -21,12 +21,18 @@
 
         double GetJobCount();
 
-        IEnumerable<T> GetAllBy<T>(string keyword, string city, int? count = null);
+        double GetJobCountByEmployer(string name);
 
-        IEnumerable<T> GetAllByTag<T>(string keyword);
+        double GetJobCountByTag(string keyword);
+
+        IEnumerable<T> GetAllBy<T>(string keyword, string city, int? page);
+
+        IEnumerable<T> GetAllByTag<T>(string keyword, int? page);
 
         bool JobPostExist(int jobPostId);
 
-        IEnumerable<T> GetAllByEmployer<T>(string name);
+        IEnumerable<T> GetAllByEmployer<T>(string name, int? page);
+
+        double GetJobCountBySearch(string keyword, string city);
     }
 }

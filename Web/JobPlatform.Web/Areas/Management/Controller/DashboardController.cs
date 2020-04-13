@@ -1,7 +1,9 @@
 ﻿namespace JobPlatform.Web.Areas.Management.Controller
 {
+    using System;
     using System.Threading.Tasks;
 
+    using JobPlatform.Common;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels.Management.Dashboard;
@@ -28,14 +30,22 @@
             this.cvmessageService = cvmessageService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
             ApplicationUser user = await this.userManager.GetUserAsync(this.User);
             Employer employer = this.employerService.GetById((int)user.EmployerId);
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
             IndexViewModel viewModel = new IndexViewModel
             {
                 Name = employer.Name,
-                JobPosts = this.jobPostsService.GetAllByEmployer<ActiveJobsViewModel>(employer.Name),
+                ActiveJobs = (int)this.jobPostsService.GetJobCountByEmployer(employer.Name),
+                JobPosts = this.jobPostsService.GetAllByEmployer<ActiveJobsViewModel>(employer.Name, page),
+                PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCountByEmployer(employer.Name) / GlobalConstants.ItemsPerPage),
+                CurrentPage = (int)page,
             };
             return this.View(viewModel);
         }

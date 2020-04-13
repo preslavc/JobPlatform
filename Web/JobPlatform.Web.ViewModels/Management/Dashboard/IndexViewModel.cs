@@ -9,6 +9,10 @@
 
         public IEnumerable<ActiveJobsViewModel> JobPosts { get; set; }
 
-        public int ActiveJobs => this.JobPosts.Count();
+        public int ActiveJobs { get; set; }
+
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
     }
 }

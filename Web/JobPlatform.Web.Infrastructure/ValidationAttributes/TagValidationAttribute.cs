@@ -22,6 +22,21 @@
                 {
                     return new ValidationResult(ErrorMessageConstants.ErrorMaxTags);
                 }
+
+                foreach (var t in tags)
+                {
+                    if (t.Length > 20)
+                    {
+                        return new ValidationResult(ErrorMessageConstants.ErrorMaxLengthTag);
+                    }
+                }
+            }
+            else
+            {
+                if (tag.Length > 20)
+                {
+                    return new ValidationResult(ErrorMessageConstants.ErrorMaxLengthTag);
+                }
             }
 
             return ValidationResult.Success;

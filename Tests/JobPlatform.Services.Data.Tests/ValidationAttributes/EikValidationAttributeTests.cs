@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Services.Data.Tests
+﻿namespace JobPlatform.Services.Data.Tests.ValidationAttributes
 {
     using JobPlatform.Web.Infrastructure.ValidationAttributes;
     using Xunit;

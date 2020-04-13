@@ -21,12 +21,14 @@
 
         public IActionResult Index()
         {
-            IndexViewModel viewModel = new IndexViewModel();
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage),
+                CurrentPage = 1,
+            };
             viewModel.JobsDisplayViewModel = new JobsDisplayViewModel()
             {
                 JobPosts = this.jobPostsService.GetAll<JobPostViewModel>(),
-                PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCount() / GlobalConstants.ItemsPerPage),
-                CurrentPage = 1,
             };
             return this.View(viewModel);
         }

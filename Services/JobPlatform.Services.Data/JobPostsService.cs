@@ -78,32 +78,49 @@
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetAllBy<T>(string keyword = null, string city = null, int? count = null)
+        public IEnumerable<T> GetAllBy<T>(string keyword = null, string city = null, int? page = null)
         {
-            IQueryable<JobPost> query = this.jobPostsRepository.All()
-                .Where(x => x.Title.Contains(keyword) || x.Tags.Any(t => t.Tag.Name == keyword) || x.City == city)
-                .OrderByDescending(x => x.CreatedOn);
-
-            if (count.HasValue)
+            if (!page.HasValue)
             {
-                query = query.Take(count.Value);
+                page = 1;
             }
 
+            IQueryable<JobPost> query = this.jobPostsRepository.All()
+                .Where(x => x.Title.Contains(keyword) || x.Tags.Any(t => t.Tag.Name == keyword) || x.City == city)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
+
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetAllByEmployer<T>(string name)
+        public IEnumerable<T> GetAllByEmployer<T>(string name, int? page)
         {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
             IQueryable<JobPost> query = this.jobPostsRepository.All()
                 .Where(x => x.Employer.Name == name)
-                .OrderByDescending(x => x.CreatedOn);
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetAllByTag<T>(string keyword)
+        public IEnumerable<T> GetAllByTag<T>(string keyword, int? page)
         {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
             IQueryable<JobPost> query = this.jobPostsRepository.All()
-                .Where(x => x.Tags.Any(t => t.Tag.Name == keyword)).OrderByDescending(x => x.CreatedOn);
+                .Where(x => x.Tags.Any(t => t.Tag.Name == keyword))
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
             return query.To<T>().ToList();
         }
 
@@ -118,6 +135,27 @@
         public double GetJobCount()
         {
             return this.jobPostsRepository.All().Count();
+        }
+
+        public double GetJobCountByTag(string keyword)
+        {
+            return this.jobPostsRepository.All()
+                .Where(x => x.Tags.Any(t => t.Tag.Name == keyword))
+                .Count();
+        }
+
+        public double GetJobCountBySearch(string keyword, string city)
+        {
+            return this.jobPostsRepository.All()
+                .Where(x => x.Title.Contains(keyword) || x.Tags.Any(t => t.Tag.Name == keyword) || x.City == city)
+                .Count();
+        }
+
+        public double GetJobCountByEmployer(string name)
+        {
+            return this.jobPostsRepository.All()
+                .Where(x => x.Employer.Name == name)
+                .Count();
         }
 
         public JobPost GetJobPost(int id)
