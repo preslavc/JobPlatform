@@ -9,6 +9,7 @@
 
         public string CreateDropBoxImageUrl(string imageUrl)
         {
+            imageUrl = imageUrl.Replace("www.dropbox.com", "dl.dropboxusercontent.com");
             return imageUrl.Replace("dl=0", "raw=1");
         }
     }

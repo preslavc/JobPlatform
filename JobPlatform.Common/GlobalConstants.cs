@@ -16,6 +16,6 @@
 
         public const string DropBoxCvUrl = "/CV/";
 
-        public const string DefaultEmployerImage = @"https://www.dropbox.com/s/kawjasv0sillz8q/default-user-150x150.png?raw=1";
+        public const string DefaultEmployerImage = @"https://dl.dropboxusercontent.com/s/kawjasv0sillz8q/default-user-150x150.png?raw=1";
     }
 }
