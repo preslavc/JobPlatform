@@ -45,5 +45,24 @@
                 .To<T>()
                 .ToList();
         }
+
+        public async Task DeleteAsync(CvMessage cvmessage)
+        {
+            if (cvmessage == null)
+            {
+                return;
+            }
+
+            this.cvмessageRepository.Delete(cvmessage);
+            await this.cvмessageRepository.SaveChangesAsync();
+            return;
+        }
+
+        public CvMessage GetMessages(int messegeId)
+        {
+            return this.cvмessageRepository.All()
+                .Where(x => x.Id == messegeId)
+                .FirstOrDefault();
+        }
     }
 }

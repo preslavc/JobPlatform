@@ -63,5 +63,25 @@
 
             return this.View(viewModel);
         }
+
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            CvMessage cvmessage = this.cvmessageService.GetMessages(id);
+
+            if (cvmessage == null)
+            {
+                return this.NotFound();
+            }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            JobApplyViewModel viewModel = this.jobPostsService.GetById<JobApplyViewModel>(cvmessage.JobPostId);
+            if (viewModel == null || viewModel.EmployerId != user.EmployerId)
+            {
+                return this.NotFound();
+            }
+
+            await this.cvmessageService.DeleteAsync(cvmessage);
+            return this.Redirect($"/Management/Dashboard/Messages?postId={cvmessage.JobPostId}");
+        }
     }
 }

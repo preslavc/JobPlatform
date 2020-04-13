@@ -1,6 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.CvMessages
 {
     using System.ComponentModel.DataAnnotations;
+
     using JobPlatform.Common;
     using Microsoft.AspNetCore.Http;
 

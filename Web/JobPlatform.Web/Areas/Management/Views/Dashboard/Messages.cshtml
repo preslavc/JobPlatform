@@ -9,10 +9,22 @@
 <hr />
 @foreach (var messages in Model.CvMessages)
 {
-        <div class="text-body">
-            <h6 class="job-card_title">@messages.FirstName @messages.LastName</h6>
-            <h7 class="job-card_location">@messages.ShortMessage</h7>
-            <p class="job-card_listed-status">@messages.CvUrl</p>
-        </div>
+    <div class="text-body">
+        <h6 class="job-card_title">@messages.FirstName @messages.LastName</h6>
+        @messages.CreatedOn
+        <p class="card-text" id="message_short">
+            @messages.ShortMessage
+        </p>
+        <a href="@messages.CvUrl" class="btn btn-outline-secondary">
+            <i class="fas fa-envelope">
+                <span>CV</span>
+            </i>
+        </a>
+        <a class="btn btn-outline-danger" asp-area="Management" asp-action="DeleteMessage" asp-route-id="@messages.Id">
+            <i class="fas fa-envelope">
+                <span>Delete</span>
+            </i>
+        </a>
+    </div>
     <hr />
 }

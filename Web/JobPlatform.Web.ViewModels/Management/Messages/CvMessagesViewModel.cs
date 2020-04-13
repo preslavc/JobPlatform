@@ -1,5 +1,6 @@
 ﻿namespace JobPlatform.Web.ViewModels.Management.Messages
 {
+    using System;
     using System.Net;
     using System.Text.RegularExpressions;
 
@@ -8,6 +9,8 @@
 
     public class CvMessagesViewModel : IMapFrom<CvMessage>
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,6 +18,8 @@
         public string CvUrl { get; set; }
 
         public string Message { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public string ShortMessage
         {
