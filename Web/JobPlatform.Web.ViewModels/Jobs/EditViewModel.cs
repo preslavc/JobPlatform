@@ -1,7 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.Jobs
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using JobPlatform.Common;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;

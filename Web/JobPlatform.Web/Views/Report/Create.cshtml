@@ -1,0 +1,24 @@
+﻿@model JobPlatform.Web.ViewModels.Reports.ReportViewModel
+@{
+    this.ViewData["Title"] = $"Report a job post: {Model.PostTitle}";
+}
+
+<h2>@this.ViewData["Title"]</h2>
+<form method="post" asp-controller="Report" asp-action="Create" class="form">
+    <input hidden asp-for="@Model.PostId" />
+    <div class="form-group">
+        <label asp-for="@Model.Title"></label>
+        <input asp-for="@Model.Title" class="form-control" />
+        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Message"></label>
+        <textarea asp-for="@Model.Message" class="form-control" rows="10"></textarea>
+        <span asp-validation-for="@Model.Message" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Send" class="btn btn-primary" />
+    </div>
+</form>

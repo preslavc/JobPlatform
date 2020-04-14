@@ -25,6 +25,8 @@
         <br />
         <div class="text-center">
             <a asp-controller="Cv" asp-action="Apply" asp-route-postId="@Model.Id" class="btn btn-primary">Apply for job</a>
+            <br />
+            <a asp-controller="Report" asp-action="Create" asp-route-postId="@Model.Id" asp-route-slug="@SlugService.ConvertSlug(Model.Title)" class="text-muted">Report post</a>
         </div>
     </div>
     <aside class="col-md-offset-1 col-md-3 col-sm-12 col-xs-12">

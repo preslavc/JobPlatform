@@ -1,6 +1,7 @@
 ﻿namespace JobPlatform.Web.ViewModels.Jobs
 {
     using System.ComponentModel.DataAnnotations;
+
     using JobPlatform.Common;
     using JobPlatform.Web.Infrastructure.ValidationAttributes;
 

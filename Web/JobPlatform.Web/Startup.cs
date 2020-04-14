@@ -71,6 +71,7 @@
             services.AddTransient<IStringManipulationService, StringManipulationService>();
             services.AddTransient<ICvMessageService, CvMessageService>();
             services.AddTransient<ISlugService, SlugService>();
+            services.AddTransient<IReportService, ReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,7 +103,7 @@
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
+            //app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -116,6 +117,10 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                        endpoints.MapControllerRoute(
+                            "report",
+                            "Report/{postId:int:min(1)}/{slug:required}",
+                            new { controller = "Report", action = "Create", });
                         endpoints.MapControllerRoute(
                             "tagged",
                             "Browse/Tagged/{tag:required}",

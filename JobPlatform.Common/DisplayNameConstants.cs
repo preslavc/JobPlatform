@@ -27,5 +27,7 @@
         public const string JobDescription = "Job description";
 
         public const string JobTags = "Tags";
+
+        public const string ReportTitle = "Reason";
     }
 }
