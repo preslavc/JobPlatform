@@ -53,5 +53,12 @@
 
             return query.To<T>().ToList();
         }
+
+        public double GetReportCount()
+        {
+            return this.reportRepository.All()
+               .Where(x => x.Resolved == false)
+               .Count();
+        }
     }
 }

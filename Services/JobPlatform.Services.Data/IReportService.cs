@@ -8,5 +8,7 @@
         Task CreateAsync(string title, string message, int? postId, string userId);
 
         IEnumerable<T> GetAllPostReports<T>(int? page = null);
+
+        double GetReportCount();
     }
 }

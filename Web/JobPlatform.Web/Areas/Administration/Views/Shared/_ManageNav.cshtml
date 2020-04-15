@@ -1,0 +1,11 @@
+﻿<ul class="nav nav-pills flex-column ">
+    <li class="nav-item"><a class="nav-link" asp-area="Administration" asp-action="Index">Dashboard</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="Administration" asp-action="Reports">Reports</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+    @*<li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Change password</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+    @if (User.IsInRole(GlobalConstants.EmployerRoleName))
+    {
+        <li class="nav-item"><a class="nav-link @ManageNavPages.EmployerDataNavClass(ViewContext)" id="employer-data" asp-page="./EmployerData">Employer data</a></li>
+    }*@
+</ul>
