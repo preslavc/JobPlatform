@@ -72,6 +72,7 @@
             services.AddTransient<ICvMessageService, CvMessageService>();
             services.AddTransient<ISlugService, SlugService>();
             services.AddTransient<IReportService, ReportService>();
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,7 +120,7 @@
                     {
                         endpoints.MapControllerRoute(
                             "report",
-                            "Report/{postId:int:min(1)}/{slug:required}",
+                            "Report/Create/{postId:int:min(1)}/{slug:required}",
                             new { controller = "Report", action = "Create", });
                         endpoints.MapControllerRoute(
                             "tagged",

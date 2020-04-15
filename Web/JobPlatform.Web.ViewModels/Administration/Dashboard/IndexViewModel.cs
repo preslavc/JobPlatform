@@ -1,10 +1,11 @@
 ﻿namespace JobPlatform.Web.ViewModels.Administration.Dashboard
 {
+    using System.Collections.Generic;
+
     public class IndexViewModel
     {
-        //public int SettingsCount { get; set; }
 
-        //public IEnumerable<ActiveJobsViewModel> JobPosts { get; set; }
+        public IEnumerable<ReportViewModel> Reports { get; set; }
 
         public int ActiveJobs { get; set; }
 

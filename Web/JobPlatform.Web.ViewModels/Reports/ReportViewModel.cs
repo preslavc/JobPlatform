@@ -15,7 +15,7 @@
         [MaxLength(100)]
         public string Title { get; set; }
 
-        [Display(Name = DisplayNameConstants.JobDescription)]
+        [Display(Name = "Description")]
         public string Message { get; set; }
     }
 }

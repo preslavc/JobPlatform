@@ -10,29 +10,32 @@
 
     public class DashboardController : AdministrationController
     {
-        private readonly ISettingsService settingsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IJobPostsService jobPostsService;
+        private readonly IApplicationUserService applicationUserService;
+        private readonly IReportService reportService;
 
         public DashboardController(
-            ISettingsService settingsService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IJobPostsService jobPostsService,
+            IApplicationUserService applicationUserService,
+            IReportService reportService)
         {
-            this.settingsService = settingsService;
             this.userManager = userManager;
+            this.jobPostsService = jobPostsService;
+            this.applicationUserService = applicationUserService;
+            this.reportService = reportService;
         }
 
         public IActionResult Index()
         {
-            //var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
-            //return this.View(viewModel);
-            return Ok();
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                ActiveJobs = (int)this.jobPostsService.GetJobCount(),
+                ActiveUsers = this.applicationUserService.GetUserCount(),
+                Reports = this.reportService.GetAllPostReports<ReportViewModel>(),
+            };
+            return this.View(viewModel);
         }
-
-        //public async Task<IActionResult> DemoteUserRole(string userId, string role)
-        //{
-        //    var user = await this.userManager.FindByIdAsync(userId);
-        //    await this.userManager.RemoveFromRoleAsync(user, role);
-        //    return Redirect();
-        //}
     }
 }

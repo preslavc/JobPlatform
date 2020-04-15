@@ -1,6 +1,7 @@
 ﻿@model JobPlatform.Web.ViewModels.Reports.ReportViewModel
 @{
     this.ViewData["Title"] = $"Report a job post: {Model.PostTitle}";
+    IEnumerable<SelectListItem> reportReasons = JobPlatform.Common.DisplayNameConstants.ReportType.Select(s => new SelectListItem { Text = s }).ToList();
 }
 
 <h2>@this.ViewData["Title"]</h2>
@@ -8,7 +9,7 @@
     <input hidden asp-for="@Model.PostId" />
     <div class="form-group">
         <label asp-for="@Model.Title"></label>
-        <input asp-for="@Model.Title" class="form-control" />
+        <select asp-for="@Model.Title" asp-items="reportReasons" class="form-control"></select>
         <span asp-validation-for="@Model.Title" class="text-danger"></span>
     </div>
 

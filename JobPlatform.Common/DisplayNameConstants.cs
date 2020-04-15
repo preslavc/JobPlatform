@@ -29,5 +29,13 @@
         public const string JobTags = "Tags";
 
         public const string ReportTitle = "Reason";
+
+        public static readonly string[] ReportType = new string[]
+        {
+            "I think it's spam or a scam",
+            "I think it's discriminatory or offensive",
+            "I think something is broken or incorrect",
+            "Other",
+        };
     }
 }

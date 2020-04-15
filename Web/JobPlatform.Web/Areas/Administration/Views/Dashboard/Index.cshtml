@@ -5,3 +5,24 @@
 
 <h1>@this.ViewData["Title"]</h1>
 
+<h2>Active Job posts: @Model.ActiveJobs</h2>
+<h2>Active users: @Model.ActiveUsers</h2>
+
+@if (Model.Reports.Count() > 0)
+{
+    <h5>Last reported posts: </h5>
+    <hr />
+    @foreach (var report in Model.Reports)
+    {
+        <div class="text-body">
+            <h6 class="job-card_title">@report.Title</h6>
+            @report.CreatedOn
+            <br />
+            <a asp-controller="Job" asp-action="Id" asp-route-id="@report.JobPostId">Reported post</a>
+            <p class="card-text" id="message_short">
+                @report.Message
+            </p>
+        </div>
+        <hr />
+    }
+}

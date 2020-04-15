@@ -1,9 +1,13 @@
 ﻿namespace JobPlatform.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    using JobPlatform.Common;
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
+    using JobPlatform.Services.Mapping;
 
     public class ReportService : IReportService
     {
@@ -32,6 +36,22 @@
             await this.reportRepository.AddAsync(report);
             await this.reportRepository.SaveChangesAsync();
             return;
+        }
+
+        public IEnumerable<T> GetAllPostReports<T>(int? page = null)
+        {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            IQueryable<Report> query = this.reportRepository.All()
+                .Where(x => x.Resolved == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
+
+            return query.To<T>().ToList();
         }
     }
 }

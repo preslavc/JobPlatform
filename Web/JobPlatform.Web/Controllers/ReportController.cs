@@ -1,12 +1,13 @@
-﻿using JobPlatform.Data.Models;
-using JobPlatform.Services.Data;
-using JobPlatform.Web.ViewModels.Reports;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace JobPlatform.Web.Controllers
+﻿namespace JobPlatform.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using JobPlatform.Data.Models;
+    using JobPlatform.Services.Data;
+    using JobPlatform.Web.ViewModels.Reports;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     public class ReportController : BaseController
     {
         private readonly IJobPostsService jobPostsService;
