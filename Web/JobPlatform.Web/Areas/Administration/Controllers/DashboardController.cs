@@ -35,8 +35,15 @@
             {
                 ActiveJobs = (int)this.jobPostsService.GetJobCount(),
                 ActiveUsers = this.applicationUserService.GetUserCount(),
-                Reports = this.reportService.GetAllPostReports<ReportViewModel>(),
             };
+
+            viewModel.ReportDisplayViewModel = new ReportDisplayViewModel()
+            {
+                Reports = this.reportService.GetAllPostReports<ReportViewModel>(),
+                CurrentPage = 1,
+                PagesCount = (int)Math.Ceiling(this.reportService.GetReportCount() / GlobalConstants.ItemsPerPage),
+            };
+
             return this.View(viewModel);
         }
 
@@ -49,7 +56,7 @@
 
             ReportDisplayViewModel viewModel = new ReportDisplayViewModel
             {
-                Reports = this.reportService.GetAllPostReports<ReportViewModel>(),
+                Reports = this.reportService.GetAllPostReports<ReportViewModel>(page),
                 CurrentPage = (int)page,
                 PagesCount = (int)Math.Ceiling(this.reportService.GetReportCount() / GlobalConstants.ItemsPerPage),
             };

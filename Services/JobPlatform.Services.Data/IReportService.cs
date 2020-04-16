@@ -10,5 +10,7 @@
         IEnumerable<T> GetAllPostReports<T>(int? page = null);
 
         double GetReportCount();
+
+        T GetById<T>(int id);
     }
 }

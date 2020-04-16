@@ -93,6 +93,7 @@
             }
 
             await this.jobPostsService.EditAsync(editViewModel.Id, editViewModel.Title, editViewModel.Description, editViewModel.City, editViewModel.Country, editViewModel.TagString);
+            this.TempData["InfoMessage"] = "Post updated successfully!";
             return this.RedirectToAction(nameof(this.Id), new { id = editViewModel.Id });
         }
 

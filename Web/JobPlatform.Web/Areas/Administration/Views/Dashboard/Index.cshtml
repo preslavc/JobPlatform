@@ -11,27 +11,26 @@
         <div class="col-md-9">
             <h1>@this.ViewData["Title"]</h1>
 
-            <h2>Active Job posts: @Model.ActiveJobs</h2>
-            <h2>Active users: @Model.ActiveUsers</h2>
-
-            @if (Model.Reports.Count() > 0)
-            {
-                <h5>Last reported posts: </h5>
-                <hr />
-                @foreach (var report in Model.Reports)
-                {
-                    <div class="text-body">
-                        <h6 class="job-card_title">@report.Title</h6>
-                        @report.CreatedOn
-                        <br />
-                        <a asp-controller="Job" asp-action="Id" asp-route-id="@report.JobPostId">Reported post</a>
-                        <p class="card-text">
-                            @report.Message
-                        </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card col-md-12 m-2">
+                        <div class="card-body text-center">
+                            <i class="far fa-file-alt fa-5x"></i>
+                            <p class="card-text">Active job posts: @Model.ActiveJobs</p>
+                        </div>
                     </div>
-                    <hr />
-                }
-            }
+                </div>
+                <div class="col-md-4">
+                    <div class="card col-md-12 m-2">
+                        <div class="card-body text-center">
+                            <i class="fa fa-user fa-5x"></i>
+                            <p class="card-text">Active users: @Model.ActiveUsers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <partial name="_ReportBrowsePartial" model="@Model.ReportDisplayViewModel" />
         </div>
     </div>
 </div>

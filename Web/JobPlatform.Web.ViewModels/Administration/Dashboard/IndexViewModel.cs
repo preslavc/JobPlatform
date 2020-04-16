@@ -1,11 +1,10 @@
 ﻿namespace JobPlatform.Web.ViewModels.Administration.Dashboard
 {
-    using System.Collections.Generic;
+    using JobPlatform.Web.ViewModels.Administration.Reports;
 
     public class IndexViewModel
     {
-
-        public IEnumerable<ReportViewModel> Reports { get; set; }
+        public ReportDisplayViewModel ReportDisplayViewModel { get; set; }
 
         public int ActiveJobs { get; set; }
 

@@ -1,7 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    this.ViewData["Title"] = "Reports";
 }
 
 <div>
@@ -11,24 +9,7 @@
         </div>
         <div class="col-md-9">
             <h1>@this.ViewData["Title"]</h1>
-            @if (Model.Reports.Count > 0)
-            {
-                <h5>All reports: </h5>
-                <hr />
-                @foreach (var report in Model.Reports)
-                {
-                    <div class="text-body">
-                        <h6 class="job-card_title">@report.Title</h6>
-                        @report.CreatedOn
-                        <br />
-                        <a asp-controller="Job" asp-action="Id" asp-route-id="@report.JobPostId">Reported post</a>
-                        <p class="card-text">
-                            @report.Message
-                        </p>
-                    </div>
-                    <hr />
-                }
-            }
+            <partial name="_ReportBrowsePartial"/>
         </div>
     </div>
 </div>

@@ -15,6 +15,7 @@
         [MaxLength(100)]
         public string Title { get; set; }
 
+        [MaxLength(300)]
         [Display(Name = "Description")]
         public string Message { get; set; }
     }

@@ -50,6 +50,7 @@
                 viewModel.Message,
                 viewModel.PostId,
                 null);
+            this.TempData["InfoMessage"] = "Report created successfully!";
             return this.Redirect($"/Job/{viewModel.PostId}/");
         }
     }

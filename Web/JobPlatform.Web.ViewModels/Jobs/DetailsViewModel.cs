@@ -6,6 +6,7 @@
     using Ganss.XSS;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
+    using JobPlatform.Web.ViewModels.Reports;
 
     public class DetailsViewModel : IMapFrom<JobPost>
     {
@@ -30,5 +31,7 @@
         public bool EditPermission { get; set; }
 
         public IEnumerable<TagViewModel> Tags { get; set; }
+
+        public ReportViewModel ReportViewModel { get; set; }
     }
 }

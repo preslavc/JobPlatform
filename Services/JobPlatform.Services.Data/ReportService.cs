@@ -60,5 +60,13 @@
                .Where(x => x.Resolved == false)
                .Count();
         }
+
+        public T GetById<T>(int id)
+        {
+            return this.reportRepository.All()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+        }
     }
 }
