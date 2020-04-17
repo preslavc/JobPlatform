@@ -12,8 +12,14 @@
 
         IEnumerable<T> GetAllMessagesAsync<T>(int postId);
 
+        IEnumerable<T> GetAllMessagesAsync<T>(string userId, int? page);
+
         Task DeleteAsync(CvMessage cvmessage);
 
         CvMessage GetMessages(int messegeId);
+
+        double GetMessageCount(string userId);
+
+        double GetMessageCount(int postId);
     }
 }

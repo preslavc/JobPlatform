@@ -1,7 +1,7 @@
-﻿@model JobPlatform.Web.ViewModels.Management.Dashboard.IndexViewModel
+﻿@model JobPlatform.Web.ViewModels.Management.Jobs.JobsViewModel
 @inject JobPlatform.Services.ISlugService SlugService
 @{
-    this.ViewData["Title"] = $"{Model.Name} Dashboard";
+    this.ViewData["Title"] = "Jobs";
 }
 
 <div>
@@ -10,19 +10,6 @@
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
-            <h1>@this.ViewData["Title"]</h1>
-            <div class="col-md-4">
-                <div class="card col-md-12">
-                    <div class="card-body text-center">
-                        <i class="far fa-file-alt fa-5x"></i>
-                        <p class="card-text">Active job posts: @Model.ActiveJobs</p>
-                    </div>
-                </div>
-                <br />
-                <a class="btn btn-primary" asp-area="" asp-controller="Job" asp-action="Create">Create new job post</a>
-            </div>
-            
-            <hr />
             <div class="container">
                 <div class="row">
                     @foreach (var job in Model.JobPosts)
@@ -37,7 +24,7 @@
                                         <h7 class="job-card_location">@job.City, @job.Country</h7>
                                         <p class="job-card_listed-status">@job.CreatedOn</p>
                                         <div class="btn-group btn-block">
-                                            <a asp-area="Management" asp-controller="Dashboard" asp-action="MessagesByPost" asp-route-postId="@job.Id" class="btn btn-outline-secondary">
+                                            <a asp-area="Management" asp-controller="Dashboard" asp-action="MessagesByPost" asp-route-postId="@job.Id" asp-route-page="" class="btn btn-outline-secondary">
                                                 <i class="fas fa-envelope">
                                                     <span>@job.ApplyCounter</span>
                                                 </i>
@@ -129,5 +116,6 @@
         })
     </script>
 }
+
 
 

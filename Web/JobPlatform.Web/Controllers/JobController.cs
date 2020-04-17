@@ -53,6 +53,7 @@
                 createViewModel.Country,
                 (int)user.EmployerId,
                 createViewModel.Tags);
+            this.TempData["InfoMessage"] = "Post create successfully!";
             return this.RedirectToAction(nameof(this.Id), new { id = jobPostId });
         }
 

@@ -1,7 +1,8 @@
 ﻿namespace JobPlatform.Web.ViewModels.Management.Dashboard
 {
     using System.Collections.Generic;
-    using System.Linq;
+
+    using JobPlatform.Web.ViewModels.Management.Jobs;
 
     public class IndexViewModel
     {

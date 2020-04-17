@@ -21,10 +21,21 @@
 
         public DateTime CreatedOn { get; set; }
 
+        public JobPost JobPost { get; set; }
+
+        public string JobTitle => this.JobPost.Title;
+
+        public int JobId => this.JobPost.Id;
+
         public string ShortMessage
         {
             get
             {
+                if (string.IsNullOrEmpty(this.Message))
+                {
+                    return string.Empty;
+                }
+
                 string message = WebUtility.HtmlDecode(Regex.Replace(this.Message, @"<[^>]+>", string.Empty));
                 return message.Length > 100
                         ? message.Substring(0, 300) + "..."

@@ -1,4 +1,4 @@
-﻿namespace JobPlatform.Web.ViewModels.Management.Dashboard
+﻿namespace JobPlatform.Web.ViewModels.Management.Jobs
 {
     using System;
     using System.Collections.Generic;

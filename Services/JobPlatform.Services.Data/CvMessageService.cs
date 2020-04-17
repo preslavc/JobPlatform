@@ -1,10 +1,10 @@
 ﻿namespace JobPlatform.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using JobPlatform.Common;
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
@@ -32,7 +32,7 @@
                 LastName = lastName,
                 JobPostId = jobPostId,
                 Message = message,
-                CvUrl = await this.fileUploadService.UploadCvAsync(file, user.FirstName + user.LastName),
+                CvUrl = file == null ? string.Empty : await this.fileUploadService.UploadCvAsync(file, firstName + lastName),
             };
             await this.cvмessageRepository.AddAsync(cvmessage);
             await this.cvмessageRepository.SaveChangesAsync();
@@ -43,6 +43,23 @@
             return this.cvмessageRepository.All()
                 .Where(x => x.JobPostId == postId)
                 .To<T>()
+                .ToList();
+        }
+
+        public IEnumerable<T> GetAllMessagesAsync<T>(string userId, int? page)
+        {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            var query = this.cvмessageRepository.All()
+                .Where(x => x.JobPost.Employer.ApplicationUser.Id == userId)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
+                .Take(GlobalConstants.ItemsPerPage);
+
+            return query.To<T>()
                 .ToList();
         }
 
@@ -63,6 +80,20 @@
             return this.cvмessageRepository.All()
                 .Where(x => x.Id == messegeId)
                 .FirstOrDefault();
+        }
+
+        public double GetMessageCount(string userId)
+        {
+            return this.cvмessageRepository.All()
+                .Where(x => x.JobPost.Employer.ApplicationUser.Id == userId)
+                .Count();
+        }
+
+        public double GetMessageCount(int postId)
+        {
+            return this.cvмessageRepository.All()
+                .Where(x => x.JobPostId == postId)
+                .Count();
         }
     }
 }

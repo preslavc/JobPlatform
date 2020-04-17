@@ -62,7 +62,8 @@
                 createCvViewModel.CvFile,
                 createCvViewModel.FirstName,
                 createCvViewModel.LastName);
-            return this.Redirect("/Browse/Jobs/");
+            this.TempData["InfoMessage"] = "Your job apply was sent successfully!";
+            return this.Redirect($"/Job/{createCvViewModel.PostId}");
         }
     }
 }

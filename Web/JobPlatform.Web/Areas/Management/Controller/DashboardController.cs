@@ -7,6 +7,7 @@
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels.Management.Dashboard;
+    using JobPlatform.Web.ViewModels.Management.Jobs;
     using JobPlatform.Web.ViewModels.Management.Messages;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -50,9 +51,29 @@
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> Jobs(int? page)
+        {
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            Employer employer = this.employerService.GetById((int)user.EmployerId);
+
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            JobsViewModel viewModel = new JobsViewModel
+            {
+                JobPosts = this.jobPostsService.GetAllByEmployer<ActiveJobsViewModel>(employer.Name, page),
+                CurrentPage = (int)page,
+                PagesCount = (int)Math.Ceiling(this.jobPostsService.GetJobCountByEmployer(employer.Name) / GlobalConstants.ItemsPerPage),
+            };
+
+            return this.View(viewModel);
+        }
+
         //[Route("Management/Messages/")]
         //[Route("Management/Messages/{postId}")]
-        public async Task<IActionResult> Messages([FromQuery]int postId)
+        public async Task<IActionResult> MessagesByPost(int postId)
         {
             ApplicationUser user = await this.userManager.GetUserAsync(this.User);
             JobApplyViewModel viewModel = this.jobPostsService.GetById<JobApplyViewModel>(postId);
@@ -60,6 +81,24 @@
             {
                 return this.NotFound();
             }
+
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Messages(int? page)
+        {
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            MessageBrowseViewModel viewModel = new MessageBrowseViewModel
+            {
+                CvMessages = this.cvmessageService.GetAllMessagesAsync<CvMessagesViewModel>(user.Id, page),
+                CurrentPage = (int)page,
+                PagesCount = (int)Math.Ceiling(this.cvmessageService.GetMessageCount(user.Id) / GlobalConstants.ItemsPerPage),
+            };
 
             return this.View(viewModel);
         }

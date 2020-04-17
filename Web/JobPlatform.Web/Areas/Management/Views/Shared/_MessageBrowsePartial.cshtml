@@ -1,0 +1,28 @@
+﻿@model JobPlatform.Web.ViewModels.Management.Messages.MessageBrowseViewModel
+@inject JobPlatform.Services.ISlugService SlugService
+@foreach (var message in Model.CvMessages)
+{
+    <div class="text-body">
+        <a asp-area="" asp-controller="Job" asp-action="Id" asp-route-id="@message.JobId" asp-route-slug="@SlugService.ConvertSlug(message.JobTitle)">
+            <h6 class="job-card_title">@message.JobTitle</h6>
+        </a>
+        Sent by: @message.FirstName @message.LastName
+        <br>
+        @message.CreatedOn
+
+        <p class="card-text" id="message_short">
+            @message.ShortMessage
+        </p>
+        <a href="@message.CvUrl" class="btn btn-outline-secondary">
+            <i class="fas fa-envelope">
+                <span>CV</span>
+            </i>
+        </a>
+        <a class="btn btn-outline-danger" asp-area="Management" asp-action="DeleteMessage" asp-route-id="@message.Id">
+            <i class="fa fa-times">
+                <span>Delete</span>
+            </i>
+        </a>
+    </div>
+    <hr />
+}
