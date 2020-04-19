@@ -38,6 +38,15 @@
             return;
         }
 
+        public async Task UpdateAsync(int reportId, bool status, string message)
+        {
+            Report report = this.GetReport(reportId);
+            report.Resolved = status;
+            report.ResolvedInfo = message;
+            this.reportRepository.Update(report);
+            await this.reportRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAllPostReports<T>(int? page = null)
         {
             if (!page.HasValue)
@@ -66,6 +75,13 @@
             return this.reportRepository.All()
                 .Where(x => x.Id == id)
                 .To<T>()
+                .FirstOrDefault();
+        }
+
+        public Report GetReport(int id)
+        {
+            return this.reportRepository.All()
+                .Where(x => x.Id == id)
                 .FirstOrDefault();
         }
     }

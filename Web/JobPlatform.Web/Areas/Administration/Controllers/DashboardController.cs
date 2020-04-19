@@ -1,7 +1,7 @@
 ﻿namespace JobPlatform.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Threading.Tasks;
+
     using JobPlatform.Common;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Data;

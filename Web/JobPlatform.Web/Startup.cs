@@ -119,6 +119,10 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute(
+                            "reportId",
+                            "Administration/Report/{id:int:min(1)}",
+                            new { area="Administration", controller = "Report", action = "Id", });
+                        endpoints.MapControllerRoute(
                             "report",
                             "Report/Create/{postId:int:min(1)}/{slug:required}",
                             new { controller = "Report", action = "Create", });

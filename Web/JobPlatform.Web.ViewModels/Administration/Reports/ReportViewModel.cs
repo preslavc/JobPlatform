@@ -1,7 +1,7 @@
-﻿namespace JobPlatform.Web.ViewModels.Administration.Dashboard
+﻿namespace JobPlatform.Web.ViewModels.Administration.Reports
 {
     using System;
-
+    using System.ComponentModel.DataAnnotations;
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
 
@@ -17,8 +17,10 @@
 
         public string ApplicationUserId { get; set; }
 
+        [Display(Name="Status")]
         public bool Resolved { get; set; }
 
+        [Display(Name = "Information")]
         public string ResolvedInfo { get; set; }
 
         public DateTime CreatedOn { get; set; }
