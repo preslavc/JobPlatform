@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\Data\JobPlatform.Data\JobPlatform.Data.csproj" />
     <ProjectReference Include="..\..\Services\JobPlatform.Services.Data\JobPlatform.Services.Data.csproj" />
     <ProjectReference Include="..\..\Web\JobPlatform.Web.Infrastructure\JobPlatform.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Web\JobPlatform.Web.ViewModels\JobPlatform.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

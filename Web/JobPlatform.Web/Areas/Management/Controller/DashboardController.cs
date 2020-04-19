@@ -71,8 +71,6 @@
             return this.View(viewModel);
         }
 
-        //[Route("Management/Messages/")]
-        //[Route("Management/Messages/{postId}")]
         public async Task<IActionResult> MessagesByPost(int postId)
         {
             ApplicationUser user = await this.userManager.GetUserAsync(this.User);
