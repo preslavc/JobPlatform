@@ -103,7 +103,7 @@
 
         public async Task<IActionResult> DeleteMessage(int id)
         {
-            CvMessage cvmessage = this.cvmessageService.GetMessages(id);
+            CvMessage cvmessage = this.cvmessageService.GetMessage(id);
 
             if (cvmessage == null)
             {

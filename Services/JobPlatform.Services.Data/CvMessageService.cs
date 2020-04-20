@@ -75,7 +75,7 @@
             return;
         }
 
-        public CvMessage GetMessages(int messegeId)
+        public CvMessage GetMessage(int messegeId)
         {
             return this.cvмessageRepository.All()
                 .Where(x => x.Id == messegeId)

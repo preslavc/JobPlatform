@@ -16,7 +16,7 @@
 
         Task DeleteAsync(CvMessage cvmessage);
 
-        CvMessage GetMessages(int messegeId);
+        CvMessage GetMessage(int messageId);
 
         double GetMessageCount(string userId);
 
