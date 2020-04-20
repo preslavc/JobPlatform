@@ -48,6 +48,25 @@
         }
 
         [Fact]
+        public async Task JobCountByEmployerShouldReturnCorrectNumber()
+        {
+            Employer employer = new Employer { Name = "Test" };
+            Employer employer2 = new Employer { Name = "Invalid employer" };
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "JobPostByEmployerDb").Options;
+            var dbContext = new ApplicationDbContext(options);
+            dbContext.JobPosts.Add(new JobPost() { Employer = employer });
+            dbContext.JobPosts.Add(new JobPost() { Employer = employer });
+            dbContext.JobPosts.Add(new JobPost() { Employer = employer2 });
+            dbContext.JobPosts.Add(new JobPost());
+            await dbContext.SaveChangesAsync();
+
+            var repository = new EfDeletableEntityRepository<JobPost>(dbContext);
+            var service = new JobPostsService(repository, null);
+            Assert.Equal(2, service.GetJobCountByEmployer("Test"));
+        }
+
+        [Fact]
         public void JobPostShouldExist()
         {
             var repository = new Mock<IDeletableEntityRepository<JobPost>>();
@@ -82,7 +101,7 @@
         }
 
         [Fact]
-        public void GetJobPostModelById()
+        public void GetJobPostShouldReturnJobPostModel()
         {
             var expected = new JobPost { Id = 1, Title = "Test 1"};
             var repository = new Mock<IDeletableEntityRepository<JobPost>>();
@@ -101,7 +120,7 @@
         }
 
         [Fact]
-        public async Task CreateJobPost()
+        public async Task CreateShouldCreateJobPost()
         {
             string title = "Test 1";
             string description = "Test Description";
@@ -138,6 +157,70 @@
                expected.City == result.City &&
                expected.Country == result.Country &&
                expected.EmployerId == result.EmployerId);
+        }
+
+        [Fact]
+        public async Task EditShouldEditJobPost()
+        {
+            string title = "Test 1";
+            string description = "Test Description";
+            string city = "City";
+            string country = "Country";
+
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "JobEditDb").Options;
+            var dbContext = new ApplicationDbContext(options);
+
+            var repository = new EfDeletableEntityRepository<JobPost>(dbContext);
+            var tagRepository = new Mock<ITagService>();
+            var service = new JobPostsService(repository, tagRepository.Object);
+
+            var id = await service.CreateAsync(title, description, city, country, 1, string.Empty);
+
+            var expected = new JobPost
+            {
+                Title = title + "edit",
+                Description = description + "edit",
+                City = city + "edit",
+                Country = country + "edit",
+                EmployerId = 1,
+            };
+
+            await service.EditAsync(
+                id,
+                title + "edit",
+                description + "edit",
+                city + "edit",
+                country + "edit",
+                string.Empty);
+            var result = service.GetJobPost(id);
+
+            Assert.True(
+               expected.Title == result.Title &&
+               expected.Description == result.Description &&
+               expected.City == result.City &&
+               expected.Country == result.Country &&
+               expected.EmployerId == result.EmployerId);
+        }
+
+        [Fact]
+        public async Task DeleteShouldDeleteJobPost()
+        {
+            JobPost jobPost = new JobPost()
+            {
+                Id = 1,
+            };
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+               .UseInMemoryDatabase(databaseName: "JobDeleteDb").Options;
+            var dbContext = new ApplicationDbContext(options);
+            dbContext.JobPosts.Add(jobPost);
+            await dbContext.SaveChangesAsync();
+
+            var repository = new EfDeletableEntityRepository<JobPost>(dbContext);
+            var service = new JobPostsService(repository, null);
+            Assert.Equal(1, service.GetJobCount());
+            await service.DeleteAsync(jobPost);
+            Assert.Equal(0, service.GetJobCount());
         }
     }
 }

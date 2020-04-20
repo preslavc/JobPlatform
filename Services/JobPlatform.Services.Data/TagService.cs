@@ -1,12 +1,10 @@
 ﻿namespace JobPlatform.Services.Data
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using JobPlatform.Data.Common.Repositories;
     using JobPlatform.Data.Models;
-    using JobPlatform.Services.Mapping;
 
     public class TagService : ITagService
     {
@@ -69,7 +67,7 @@
                 tags += tag.Name + " ";
             }
 
-            return tags;
+            return tags.Trim();
         }
 
         private async Task<Tag> GetOrCreateAsync(string name)

@@ -48,8 +48,7 @@
             await this.reportService.CreateAsync(
                 viewModel.Title,
                 viewModel.Message,
-                viewModel.PostId,
-                null);
+                viewModel.PostId);
             this.TempData["InfoMessage"] = "Report created successfully!";
             return this.Redirect($"/Job/{viewModel.PostId}/");
         }

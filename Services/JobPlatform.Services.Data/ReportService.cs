@@ -18,9 +18,9 @@
             this.reportRepository = reportRepository;
         }
 
-        public async Task CreateAsync(string title, string message, int? postId, string userId)
+        public async Task CreateAsync(string title, string message, int? postId)
         {
-            if (postId == null && userId == null)
+            if (postId == null)
             {
                 return;
             }
@@ -30,7 +30,6 @@
                 Title = title,
                 Message = message,
                 JobPostId = postId.HasValue ? postId : null,
-                ApplicationUserId = userId,
             };
 
             await this.reportRepository.AddAsync(report);
