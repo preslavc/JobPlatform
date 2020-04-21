@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using JobPlatform.Data.Models;
     using JobPlatform.Services.Mapping;
 
@@ -19,6 +20,8 @@
 
         [Display(Name="Status")]
         public bool Resolved { get; set; }
+
+        public string Status => this.Resolved ? "Resolved" : "Not resolved";
 
         [Display(Name = "Information")]
         public string ResolvedInfo { get; set; }

@@ -63,5 +63,10 @@
 
             return this.View(viewModel);
         }
+
+        public IActionResult Users()
+        {
+            return this.View();
+        }
     }
 }

@@ -8,6 +8,8 @@
 
         public const string ModeratorRoleName = "Moderator";
 
+        public const string UserRoleName = "User";
+
         public const string EmployerRoleName = "Employer";
 
         public const int ItemsPerPage = 12;

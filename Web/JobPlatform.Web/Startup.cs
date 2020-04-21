@@ -118,6 +118,14 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute(
+                            "editId",
+                            "Administration/User/Edit/{userId:required}",
+                            new { area = "Administration", controller = "User", action = "EditUser", });
+                        endpoints.MapControllerRoute(
+                            "userId",
+                            "Administration/User/{userId:required}",
+                            new { area = "Administration", controller = "User", action = "Profile", });
+                        endpoints.MapControllerRoute(
                             "reportId",
                             "Administration/Report/{id:int:min(1)}",
                             new { area="Administration", controller = "Report", action = "Id", });

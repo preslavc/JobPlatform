@@ -1,0 +1,48 @@
+﻿@model JobPlatform.Web.ViewModels.Administration.Users.UserViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h3>@this.ViewData["Title"] @Model.Email</h3>
+
+@if (this.TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-success">
+        @this.TempData["InfoMessage"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <p>
+            Email: @Model.Email
+            @if (Model.Role != "")
+            {
+                <br />
+                <span>Role: @Model.Role</span>
+            }
+            @if (Model.FirstName != null)
+            {
+                <br />
+                <span>First name: @Model.FirstName</span>
+            }
+            @if (Model.LastName != null)
+            {
+                <br />
+                <span>Last name: @Model.LastName</span>
+            }
+            @if (Model.PhoneNumber != null)
+            {
+                <br />
+                <span>Phone number: @Model.PhoneNumber</span>
+            }
+            @if (Model.Employer != null)
+            {
+                <br />
+                <span>Company: @Model.Employer.Name</span>
+            }
+            <br />
+        </p>
+        <a class="btn btn-primary" asp-area="Administration" asp-controller="User" asp-action="EditUser" asp-route-userId="@Model.UserId">Edit profile</a>
+    </div>
+</div>

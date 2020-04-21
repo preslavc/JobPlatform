@@ -54,8 +54,8 @@
             }
 
             IQueryable<Report> query = this.reportRepository.All()
-                .Where(x => x.Resolved == false)
-                .OrderByDescending(x => x.CreatedOn)
+                .OrderBy(x => x.Resolved)
+                .ThenByDescending(x => x.CreatedOn)
                 .Skip(((int)page - 1) * GlobalConstants.ItemsPerPage)
                 .Take(GlobalConstants.ItemsPerPage);
 
@@ -65,7 +65,6 @@
         public double GetReportCount()
         {
             return this.reportRepository.All()
-               .Where(x => x.Resolved == false)
                .Count();
         }
 
