@@ -7,6 +7,7 @@
     using JobPlatform.Services.Data;
     using JobPlatform.Web.ViewModels.Administration.Dashboard;
     using JobPlatform.Web.ViewModels.Administration.Reports;
+    using JobPlatform.Web.ViewModels.Administration.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -66,7 +67,8 @@
 
         public IActionResult Users()
         {
-            return this.View();
+            SearchUserViewModel viewModel = new SearchUserViewModel();
+            return this.View(viewModel);
         }
     }
 }

@@ -18,6 +18,9 @@
             <h1>@this.ViewData["Title"]</h1>
             <a class="btn btn-primary" asp-area="Administration" asp-controller="User" asp-action="CreateUser">Create user</a>
             <a class="btn btn-primary" asp-area="Administration" asp-controller="User" asp-action="CreateEmployer">Create employer</a>
+            <br />
+            <br />
+            <partial name="_SearchUserPartial" model="@Model" />
         </div>
     </div>
 </div>

@@ -1,0 +1,44 @@
+﻿@model JobPlatform.Web.ViewModels.Administration.Users.UserBrowseViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @if (this.TempData["InfoMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @this.TempData["InfoMessage"]
+                </div>
+            }
+            <h1>@this.ViewData["Title"]</h1>
+            <a class="btn btn-primary" asp-area="Administration" asp-controller="User" asp-action="CreateUser">Create user</a>
+            <a class="btn btn-primary" asp-area="Administration" asp-controller="User" asp-action="CreateEmployer">Create employer</a>
+            <br />
+            <br />
+            <partial name="_SearchUserPartial" model="@Model.SearchUserViewModel" />
+
+            <div class="container">
+                <div class="row">
+                    @foreach (var user in Model.Users)
+                    {
+                        <div class="col-md-4">
+                            <a asp-area="Administration" asp-controller="User" asp-action="Profile" asp-route-userId="@user.Id">
+                                <div class="card col-md-12 m-2">
+                                    <div class="card-body text-center">
+                                        <h5 class="job-card_title text-overflow__ellipsis">@user.UserName</h5>
+                                        <h5 class="card-subtitle text-overflow__ellipsis">@user.Email</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

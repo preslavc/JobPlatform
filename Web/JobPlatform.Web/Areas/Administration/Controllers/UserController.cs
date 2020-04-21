@@ -12,13 +12,16 @@
     public class UserController : AdministrationController
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IApplicationUserService applicationUserService;
         private readonly IEmployerService employerService;
 
         public UserController(
             UserManager<ApplicationUser> userManager,
+            IApplicationUserService applicationUserService,
             IEmployerService employerService)
         {
             this.userManager = userManager;
+            this.applicationUserService = applicationUserService;
             this.employerService = employerService;
         }
 
@@ -225,6 +228,45 @@
 
             this.TempData["InfoMessage"] = "User update successfully!";
             return this.Redirect($"/Administration/User/{user.Id}");
+        }
+
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            ApplicationUser user = await this.userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return this.NotFound();
+            }
+
+            var roles = await this.userManager.GetRolesAsync(user);
+            string role = string.Empty;
+
+            foreach (var r in roles)
+            {
+                role += r;
+            }
+
+            if (role != string.Empty)
+            {
+                await this.userManager.RemoveFromRoleAsync(user, role);
+            }
+
+            await this.userManager.DeleteAsync(user);
+            this.TempData["InfoMessage"] = "User deleted successfully!";
+            return this.Redirect("/Administration/Dashboard");
+        }
+
+        public IActionResult Search(string name)
+        {
+            UserBrowseViewModel viewModel = new UserBrowseViewModel
+            {
+                SearchUserViewModel = new SearchUserViewModel
+                {
+                    Name = name,
+                },
+                Users = this.applicationUserService.GetUsersByName<UserCardViewModel>(name),
+            };
+            return this.View(viewModel);
         }
     }
 }

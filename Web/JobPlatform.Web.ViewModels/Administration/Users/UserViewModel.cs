@@ -4,7 +4,6 @@
 
     using JobPlatform.Common;
     using JobPlatform.Data.Models;
-    using JobPlatform.Services.Mapping;
 
     public class UserViewModel
     {
