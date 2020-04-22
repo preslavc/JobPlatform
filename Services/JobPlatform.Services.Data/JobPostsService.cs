@@ -175,5 +175,21 @@
 
             return true;
         }
+
+        public async Task DeleteAllPostsFromEmployer(int employerId)
+        {
+            IEnumerable<JobPost> jobPosts = this.jobPostsRepository.All().Where(x => x.EmployerId == employerId);
+            if (jobPosts == null)
+            {
+                return;
+            }
+
+            foreach (var job in jobPosts)
+            {
+                this.jobPostsRepository.Delete(job);
+            }
+
+            await this.jobPostsRepository.SaveChangesAsync();
+        }
     }
 }

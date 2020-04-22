@@ -22,22 +22,24 @@
             <br />
             <partial name="_SearchUserPartial" model="@Model.SearchUserViewModel" />
 
-            <div class="container">
-                <div class="row">
-                    @foreach (var user in Model.Users)
-                    {
-                        <div class="col-md-4">
-                            <a asp-area="Administration" asp-controller="User" asp-action="Profile" asp-route-userId="@user.Id">
-                                <div class="card col-md-12 m-2">
-                                    <div class="card-body text-center">
-                                        <h5 class="job-card_title text-overflow__ellipsis">@user.UserName</h5>
-                                        <h5 class="card-subtitle text-overflow__ellipsis">@user.Email</h5>
-                                    </div>
+            <div class="row">
+                @foreach (var user in Model.Users)
+                {
+                    <div class="col-md-4 table-hover">
+                        <a asp-area="Administration" asp-controller="User" asp-action="Profile" asp-route-userId="@user.Id" style="color : inherit;">
+                            <div class="card col-md-12 m-2">
+                                <div class="card-body text-center">
+                                    <h5 class="job-card_title text-overflow__ellipsis">@user.UserName</h5>
+                                    <p>
+                                        <span class="card-subtitle text-overflow__ellipsis">@user.Email</span>
+                                        <span>@user.CreatedOn</span>
+                                    </p>
+
                                 </div>
-                            </a>
-                        </div>
-                    }
-                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>

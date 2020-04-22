@@ -1,7 +1,7 @@
 ﻿@model JobPlatform.Web.ViewModels.Administration.Users.SearchUserViewModel
 
 <div class="d-flex">
-    <form class="form-inline md-1" asp-area="Administration" asp-controller="User" asp-action="Search" asp-route-name="@Model.Name">
+    <form class="form-inline md-1" asp-area="Administration" asp-controller="User" asp-action="Search" asp-route-name="@Model.Name" method="get">
         <div class="form-group mb-2">
             <input asp-for=@Model.Name class="form-control" />
             <span asp-validation-for=@Model.Name class="text-danger"></span>

@@ -1,8 +1,7 @@
-﻿using JobPlatform.Data.Models;
-using System.Collections.Generic;
-
-namespace JobPlatform.Services.Data
+﻿namespace JobPlatform.Services.Data
 {
+    using System.Collections.Generic;
+
     public interface IApplicationUserService
     {
         int GetUserCount();

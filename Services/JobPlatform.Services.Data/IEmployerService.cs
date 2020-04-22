@@ -19,5 +19,7 @@
         bool ContaintPost(int postId, int employerId);
 
         double GetEmployerCount();
+
+        Task DeleteEmployer(int employerId);
     }
 }

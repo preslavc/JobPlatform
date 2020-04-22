@@ -34,5 +34,7 @@
         IEnumerable<T> GetAllByEmployer<T>(string name, int? page);
 
         double GetJobCountBySearch(string keyword, string city);
+
+        Task DeleteAllPostsFromEmployer(int employerId);
     }
 }

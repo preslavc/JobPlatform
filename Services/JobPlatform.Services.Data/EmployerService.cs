@@ -78,5 +78,17 @@
         {
             return this.employerRepository.All().Count();
         }
+
+        public async Task DeleteEmployer(int employerId)
+        {
+            Employer employer = this.GetById(employerId);
+            if (employer == null)
+            {
+                return;
+            }
+
+            this.employerRepository.Delete(employer);
+            await this.employerRepository.SaveChangesAsync();
+        }
     }
 }

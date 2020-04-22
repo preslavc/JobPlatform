@@ -14,15 +14,18 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IApplicationUserService applicationUserService;
         private readonly IEmployerService employerService;
+        private readonly IJobPostsService jobPostsService;
 
         public UserController(
             UserManager<ApplicationUser> userManager,
             IApplicationUserService applicationUserService,
-            IEmployerService employerService)
+            IEmployerService employerService,
+            IJobPostsService jobPostsService)
         {
             this.userManager = userManager;
             this.applicationUserService = applicationUserService;
             this.employerService = employerService;
+            this.jobPostsService = jobPostsService;
         }
 
         public IActionResult CreateUser()
@@ -94,11 +97,7 @@
             IdentityResult result = await this.userManager.CreateAsync(user, viewModel.Password);
             if (result.Succeeded)
             {
-                if (!string.IsNullOrEmpty(viewModel.Role))
-                {
-                    await this.userManager.AddToRoleAsync(user, GlobalConstants.EmployerRoleName);
-                }
-
+                await this.userManager.AddToRoleAsync(user, GlobalConstants.EmployerRoleName);
                 this.TempData["InfoMessage"] = "Employer created successfully!";
             }
 
@@ -251,6 +250,12 @@
                 await this.userManager.RemoveFromRoleAsync(user, role);
             }
 
+            if (user.EmployerId.HasValue)
+            {
+                await this.employerService.DeleteEmployer((int)user.EmployerId);
+                await this.jobPostsService.DeleteAllPostsFromEmployer((int)user.EmployerId);
+            }
+
             await this.userManager.DeleteAsync(user);
             this.TempData["InfoMessage"] = "User deleted successfully!";
             return this.Redirect("/Administration/Dashboard");
@@ -260,10 +265,6 @@
         {
             UserBrowseViewModel viewModel = new UserBrowseViewModel
             {
-                SearchUserViewModel = new SearchUserViewModel
-                {
-                    Name = name,
-                },
                 Users = this.applicationUserService.GetUsersByName<UserCardViewModel>(name),
             };
             return this.View(viewModel);
