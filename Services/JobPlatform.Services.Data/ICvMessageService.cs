@@ -18,6 +18,8 @@
 
         CvMessage GetMessage(int messageId);
 
+        T GetById<T>(int messageId);
+
         double GetMessageCount(string userId);
 
         double GetMessageCount(int postId);

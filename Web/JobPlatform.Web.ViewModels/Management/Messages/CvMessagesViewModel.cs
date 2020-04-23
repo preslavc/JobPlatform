@@ -38,7 +38,7 @@
 
                 string message = WebUtility.HtmlDecode(Regex.Replace(this.Message, @"<[^>]+>", string.Empty));
                 return message.Length > 100
-                        ? message.Substring(0, 300) + "..."
+                        ? message.Substring(0, 230) + "..."
                         : message;
             }
         }

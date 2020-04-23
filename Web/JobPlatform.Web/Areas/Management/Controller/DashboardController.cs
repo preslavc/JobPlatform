@@ -120,5 +120,22 @@
             await this.cvmessageService.DeleteAsync(cvmessage);
             return this.Redirect($"/Management/Dashboard/Messages?postId={cvmessage.JobPostId}");
         }
+
+        public async Task<IActionResult> MessageId(int messageId)
+        {
+            CvMessagesViewModel viewModel = this.cvmessageService.GetById<CvMessagesViewModel>(messageId);
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            ApplicationUser user = await this.userManager.GetUserAsync(this.User);
+            if (viewModel == null || viewModel.JobPost.EmployerId != user.EmployerId)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
+        }
     }
 }

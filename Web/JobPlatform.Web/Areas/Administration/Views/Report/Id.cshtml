@@ -11,7 +11,7 @@
         <span>Post details</span>
     </a>
     <br />
-    @Model.CreatedOn
+    <time datetime="@Model.CreatedOn.ToString("o")"></time>
     <br />
     <p class="card-text">
         @Model.Message

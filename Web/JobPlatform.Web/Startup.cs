@@ -104,7 +104,7 @@
                 app.UseHsts();
             }
 
-            // app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
+            app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -117,6 +117,10 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                        endpoints.MapControllerRoute(
+                            "messageId",
+                            "Management/Message/{messageId:int:min(1)}",
+                            new { area = "Management", controller = "Dashboard", action = "MessageId", });
                         endpoints.MapControllerRoute(
                             "editId",
                             "Administration/User/Edit/{userId:required}",

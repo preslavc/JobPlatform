@@ -6,7 +6,7 @@
         }
 
         const time = moment.utc(dateTimeValue).local();
-        $(e).html(time.format("llll"));
+        $(e).html(time.format("DD-MM-YYYY HH:mm:ss"));
         $(e).attr("title", $(e).attr("datetime"));
     });
 });

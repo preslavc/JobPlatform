@@ -10,7 +10,7 @@
                 <h6 class="job-card_title">@report.Title</h6>
                 <span>Status: @report.Status</span>
                 <br />
-                @report.CreatedOn
+                <time datetime="@report.CreatedOn.ToString("o")"></time>
                 <p class="card-text">
                     @report.Message
                 </p>

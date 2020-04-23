@@ -1,0 +1,28 @@
+﻿@model JobPlatform.Web.ViewModels.Management.Messages.CvMessagesViewModel
+@inject JobPlatform.Services.ISlugService SlugService
+@{
+    ViewData["Title"] = $"Apply for {Model.JobTitle}";
+}
+
+<div class="text-body col-md-8 col-sm-12 col-xs-12">
+    <a asp-area="" asp-controller="Job" asp-action="Id" asp-route-id="Model.JobId" asp-route-slug="@SlugService.ConvertSlug(Model.JobTitle)">
+        <h6 class="job-card_title">@ViewData["Title"]</h6>
+    </a>
+    Sent by: @Model.FirstName @Model.LastName
+    <br>
+    <time datetime="@Model.CreatedOn.ToString("o")"></time>
+
+    <p class="card-text" id="message_short">
+        @Model.Message
+    </p>
+    <a href="@Model.CvUrl" class="btn btn-outline-secondary">
+        <i class="fas fa-envelope">
+            <span>CV</span>
+        </i>
+    </a>
+    <a class="btn btn-outline-danger" asp-area="Management" asp-action="DeleteMessage" asp-route-id="@Model.Id">
+        <i class="fa fa-times">
+            <span>Delete</span>
+        </i>
+    </a>
+</div>

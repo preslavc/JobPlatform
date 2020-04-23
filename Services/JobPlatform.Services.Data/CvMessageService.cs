@@ -95,5 +95,13 @@
                 .Where(x => x.JobPostId == postId)
                 .Count();
         }
+
+        public T GetById<T>(int messageId)
+        {
+            return this.cvмessageRepository.All()
+                .Where(x => x.Id == messageId)
+                .To<T>()
+                .FirstOrDefault();
+        }
     }
 }

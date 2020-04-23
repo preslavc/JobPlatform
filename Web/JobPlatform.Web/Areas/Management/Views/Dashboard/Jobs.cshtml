@@ -22,7 +22,7 @@
                                             <h6 class="job-card_title text-overflow__ellipsis">@job.Title</h6>
                                         </a>
                                         <h7 class="job-card_location">@job.City, @job.Country</h7>
-                                        <p class="job-card_listed-status">@job.CreatedOn</p>
+                                        <p class="job-card_listed-status"><time datetime="@job.CreatedOn.ToString("o")"></time></p>
                                         <div class="btn-group btn-block">
                                             <a asp-area="Management" asp-controller="Dashboard" asp-action="MessagesByPost" asp-route-postId="@job.Id" asp-route-page="" class="btn btn-outline-secondary">
                                                 <i class="fas fa-envelope">

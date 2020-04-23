@@ -32,7 +32,7 @@
                                     <h5 class="job-card_title text-overflow__ellipsis">@user.UserName</h5>
                                     <p>
                                         <span class="card-subtitle text-overflow__ellipsis">@user.Email</span>
-                                        <span>@user.CreatedOn</span>
+                                        <time datetime="@user.CreatedOn.ToString("o")"></time>
                                     </p>
 
                                 </div>

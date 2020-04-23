@@ -8,7 +8,7 @@
         </a>
         Sent by: @message.FirstName @message.LastName
         <br>
-        @message.CreatedOn
+        <time datetime="@message.CreatedOn.ToString("o")"></time>
 
         <p class="card-text" id="message_short">
             @message.ShortMessage
@@ -16,6 +16,11 @@
         <a href="@message.CvUrl" class="btn btn-outline-secondary">
             <i class="fas fa-envelope">
                 <span>CV</span>
+            </i>
+        </a>
+        <a asp-area="Management" asp-controller="Dashboard" asp-action="MessageId" asp-route-messageId="@message.Id" class="btn btn-outline-secondary">
+            <i class="fa fa-info">
+                <span>Details</span>
             </i>
         </a>
         <a class="btn btn-outline-danger" asp-area="Management" asp-action="DeleteMessage" asp-route-id="@message.Id">

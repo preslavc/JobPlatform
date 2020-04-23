@@ -27,7 +27,7 @@
                         <div class="text-body">
                             <h6 class="job-card_title">@job.Title</h6>
                             <h7 class="job-card_location">@job.City, @job.Country</h7>
-                            <p class="job-card_listed-status">@job.CreatedOn</p>
+                            <p class="job-card_listed-status"><time datetime="@job.CreatedOn.ToString("o")"></time></p>
                         </div>
                     </a>
                     @foreach (var tag in job.Tags)

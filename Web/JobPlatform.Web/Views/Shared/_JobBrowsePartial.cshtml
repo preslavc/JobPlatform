@@ -15,7 +15,7 @@
                         <a asp-controller="Employer" asp-action="Id" asp-route-id="@jobPost.Employer.Id" asp-route-slug="@SlugService.ConvertSlug(jobPost.Employer.Name)" >
                             <h6 class="card-subtitle mb-2 text-muted">@jobPost.Employer.Name</h6>
                         </a>
-                        <p class="card-text">@jobPost.City, @jobPost.Country<br />@jobPost.CreatedOn</p>
+                        <p class="card-text">@jobPost.City, @jobPost.Country<br /><time datetime="@jobPost.CreatedOn.ToString("o")"></time></p>
                     </div>
                 </div>
             </div>
