@@ -43,13 +43,13 @@
         <div class="text-center">
             <img class="img-fluid" src="@Model.Employer.ImageUrl" alt="">
             <p class="form-text">
-
+                Posted by:
                 <a asp-controller="Employer" asp-action="Id" asp-route-id="@Model.Employer.Id" asp-route-slug="@SlugService.ConvertSlug(Model.Employer.Name)">
                     @Model.Employer.Name
                 </a>
                 <br>
-                @Model.City, @Model.Country <br>
-                @Model.Date
+                Location: @Model.City, @Model.Country <br>
+                <span>Posted on: <time datetime="@Model.CreatedOn.ToString("o")"></time></span>
             </p>
         </div>
         <hr />

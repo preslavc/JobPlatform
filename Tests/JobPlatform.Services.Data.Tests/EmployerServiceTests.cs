@@ -146,5 +146,23 @@
                expected.City == result.City &&
                expected.Country == result.Country);
         }
+
+        [Fact]
+        public async Task DeleteEmployerShouldDeleteEmployer()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "DeleteEmployerDb").Options;
+            var dbContext = new ApplicationDbContext(options);
+            dbContext.Employers.Add(new Employer());
+            await dbContext.SaveChangesAsync();
+
+            var repository = new EfDeletableEntityRepository<Employer>(dbContext);
+            var service = new EmployerService(repository, null);
+            var employerCount = service.GetEmployerCount();
+            Assert.Equal(1, employerCount);
+            var result = service.DeleteEmployer(1);
+            employerCount = service.GetEmployerCount();
+            Assert.Equal(0, employerCount);
+        }
     }
 }

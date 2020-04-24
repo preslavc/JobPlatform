@@ -22,8 +22,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string Date => this.CreatedOn.ToString("dd.MM.yyyy");
-
         public string Description { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);

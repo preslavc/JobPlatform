@@ -3,5 +3,9 @@
 }
 
 @model int
-<h1>Error: @Model</h1>
-<img src="https://softuni.bg/Content/images/404animation.gif" />
+<div class="text-center">
+    <img class="error_img" src="https://dl.dropboxusercontent.com/s/raguj3sml8r7738/errorPageImage.png?raw=1" />
+    <h5>Sorry, something went wrong! </h5>
+    <h6 class="text-muted">Error: @Model</h6>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home page</a>
+</div>
